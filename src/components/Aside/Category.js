@@ -3,8 +3,8 @@ import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CategoryLink from 'components/Aside/CategoryLink';
 
-const index = ({ heading, list }) => {
-  const Category = styled.div`
+const Category = ({ heading, list }) => {
+  const Wrapper = styled.div`
     /* background-color: ${props => props.theme.background}; */
   `;
   const Heading = styled.h3`
@@ -24,10 +24,11 @@ const index = ({ heading, list }) => {
     padding: 15px 0 0 0;
     margin-bottom: 6px;
     border-top: 1px solid;
-    border-color: ${props => props.theme.border};
+    border-color: ${({ theme }) => theme.border};
   `;
+
   return (
-    <Category>
+    <Wrapper>
       <Heading>{heading}</Heading>
       <CategoryContent>
         {list.map(item => {
@@ -35,11 +36,11 @@ const index = ({ heading, list }) => {
           return <CategoryLink key={title} icon={icon} title={title} path={path} />;
         })}
       </CategoryContent>
-    </Category>
+    </Wrapper>
   );
 };
 
-index.propTypes = {
+Category.propTypes = {
   heading: PropTypes.string.isRequired,
   list: PropTypes.arrayOf(
     PropTypes.shape({
@@ -50,4 +51,4 @@ index.propTypes = {
   ).isRequired,
 };
 
-export default index;
+export default Category;

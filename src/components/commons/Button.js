@@ -2,9 +2,7 @@ import React from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
 
-const index = props => {
-  const { children, larger, danger, mr } = props;
-
+const Button = ({ children, larger, danger, mr }) => {
   const ButtonStyling = styled.button`
     margin-right: ${`${mr}px`};
     width: 83px;
@@ -38,18 +36,18 @@ const index = props => {
   return <ButtonStyling>{children}</ButtonStyling>;
 };
 
-index.defaultProps = {
+Button.defaultProps = {
   children: false,
   larger: false,
   danger: false,
   mr: 0,
 };
 
-index.propTypes = {
+Button.propTypes = {
   children: PropTypes.node,
   larger: PropTypes.bool,
   danger: PropTypes.bool,
   mr: PropTypes.number,
 };
 
-export default index;
+export default Button;

@@ -2,8 +2,8 @@ import React from 'react';
 import logo from 'images/logo.png';
 import styled from 'styled-components';
 
-const index = () => {
-  const Brand = styled.div`
+const Brand = () => {
+  const Wrapper = styled.div`
     display: flex;
     align-items: center;
     padding-left: 35px;
@@ -24,11 +24,11 @@ const index = () => {
   `;
 
   return (
-    <Brand>
+    <Wrapper>
       <BrandLogo src={logo} alt="logo" />
       <BrandName>orbita</BrandName>
-    </Brand>
+    </Wrapper>
   );
 };
 
-export default index;
+export default Brand;

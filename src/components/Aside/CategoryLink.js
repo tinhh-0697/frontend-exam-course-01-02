@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
-const index = ({ icon, title, path }) => {
+const CategoryLink = ({ icon, title, path }) => {
   const Content = styled.li`
     position: relative;
     padding-left: 34px;
@@ -21,7 +21,7 @@ const index = ({ icon, title, path }) => {
       visibility: visible;
     }
   `;
-  const CategoryLink = styled(Link)`
+  const LinkMenu = styled(Link)`
     padding: 17px 0;
     display: flex;
     align-items: center;
@@ -33,7 +33,7 @@ const index = ({ icon, title, path }) => {
     margin-right: 26px;
     width: 26px;
     height: 26px;
-    fill: ${props => props.theme.thirty};
+    fill: ${({ theme }) => theme.thirty};
     transition: 0.25s;
     ${Content}:hover & {
       fill: #38c6da;
@@ -41,7 +41,7 @@ const index = ({ icon, title, path }) => {
   `;
   const Title = styled.h4`
     margin-bottom: 0;
-    color: ${props => props.theme.title};
+    color: ${({ theme }) => theme.title};
     font-size: 18px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
@@ -53,18 +53,18 @@ const index = ({ icon, title, path }) => {
   `;
   return (
     <Content>
-      <CategoryLink to={path}>
+      <LinkMenu to={path}>
         <Icon />
         <Title>{title}</Title>
-      </CategoryLink>
+      </LinkMenu>
     </Content>
   );
 };
 
-index.propTypes = {
+CategoryLink.propTypes = {
   icon: PropTypes.elementType.isRequired,
   title: PropTypes.string.isRequired,
   path: PropTypes.string.isRequired,
 };
 
-export default index;
+export default CategoryLink;

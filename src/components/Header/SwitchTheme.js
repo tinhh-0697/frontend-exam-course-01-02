@@ -1,9 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Sun, Moon } from 'components/Commons/icons';
 import styled from 'styled-components';
+import { changeTheme } from 'redux/actions/UIActions';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 
-const SwitchTheme = () => {
-  const [isDarkMode, changeMode] = useState(false);
+// eslint-disable-next-line no-shadow
+const SwitchTheme = ({ changeTheme }) => {
   const SwitchButton = styled.button`
     display: flex;
     justify-content: center;
@@ -16,7 +19,7 @@ const SwitchTheme = () => {
     border: 0;
     border-radius: 50%;
     transition: all 0.3s linear;
-    background-color: ${props => props.theme.reserve};
+    background-color: ${({ theme }) => theme.reserve};
     svg {
       width: 30px;
       height: 30px;
@@ -29,11 +32,12 @@ const SwitchTheme = () => {
   const IconContainer = styled.div`
     width: 30px;
     transition: all 0.3s linear;
-    transform: ${props => (!props.theme.lightMode ? 'translateY(5px)' : 'translateY(-30px)')};
+    transform: ${({ theme }) => (!theme.lightMode ? 'translateY(5px)' : 'translateY(-30px)')};
   `;
   const handleChangeTheme = () => {
-    changeMode(!isDarkMode);
+    changeTheme();
   };
+
   return (
     <SwitchButton type="button" onClick={handleChangeTheme}>
       <IconContainer>
@@ -44,4 +48,10 @@ const SwitchTheme = () => {
   );
 };
 
-export default SwitchTheme;
+SwitchTheme.propTypes = {
+  changeTheme: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = { changeTheme };
+
+export default connect(null, mapDispatchToProps)(SwitchTheme);

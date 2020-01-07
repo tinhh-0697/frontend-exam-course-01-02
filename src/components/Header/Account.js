@@ -3,18 +3,18 @@ import styled from 'styled-components';
 import { Setting } from 'components/Commons/icons';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 
-const Name = () => {
+const Account = () => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
-  const Account = styled.div`
+  const Wrapper = styled.div`
     display: flex;
     align-items: center;
   `;
   const AccountName = styled.h2`
     margin: 0 20px 0 0;
-    color: ${props => props.theme.fifty};
+    color: ${({ theme }) => theme.fifty};
     font-size: 20px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
@@ -22,7 +22,7 @@ const Name = () => {
   const SettingIcon = styled(Setting)`
     width: 32px;
     height: 32px;
-    fill: ${props => props.theme.thirty};
+    fill: ${({ theme }) => theme.thirty};
   `;
   const Toggle = styled(DropdownToggle)`
     padding: 0;
@@ -42,7 +42,7 @@ const Name = () => {
     }
   `;
   return (
-    <Account>
+    <Wrapper>
       <AccountName>Kaie Reed</AccountName>
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <Toggle>
@@ -54,8 +54,8 @@ const Name = () => {
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
-    </Account>
+    </Wrapper>
   );
 };
 
-export default Name;
+export default Account;

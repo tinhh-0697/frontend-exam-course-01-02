@@ -2,9 +2,8 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 
-const index = props => {
-  const { checked } = props;
-  const Check = styled.div`
+const Check = ({ checked }) => {
+  const Wrapper = styled.div`
     display: inline-block;
     color: #000;
     position: relative;
@@ -17,18 +16,14 @@ const index = props => {
     -webkit-transform: rotate(-45deg);
     transform: rotate(-45deg);
   `;
-  return (
-    <>
-      <Check />
-    </>
-  );
+  return <Wrapper />;
 };
 
-index.defaultProps = {
+Check.defaultProps = {
   checked: false,
 };
 
-index.propTypes = {
+Check.propTypes = {
   checked: PropTypes.bool,
 };
-export default index;
+export default Check;

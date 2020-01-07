@@ -10,7 +10,6 @@ const TableArticle = () => {
     th {
       vertical-align: middle;
       padding-bottom: 17px;
-      /* display: inline; */
     }
     td {
       vertical-align: middle;
@@ -32,16 +31,16 @@ const TableArticle = () => {
   `;
   const TableBody = styled.tbody`
     border-top: 1px solid;
-    border-color: ${props => props.theme.border};
+    border-color: ${({ theme }) => theme.border};
   `;
   const Row = styled.tr`
     height: 85px;
     :nth-of-type(odd) {
       height: 75px;
-      background-color: ${props => props.theme.row} !important;
+      background-color: ${({ theme }) => theme.row} !important;
     }
     :hover {
-      background-color: ${props => props.theme.row} !important;
+      background-color: ${({ theme }) => theme.row} !important;
     }
   `;
 
@@ -62,9 +61,6 @@ const TableArticle = () => {
     text-align: center;
   `;
   const Options = styled.td`
-    /* display: flex; */
-    /* align-items: center; */
-    /* height: 75px; */
     :first-of-type {
       padding-right: 37px;
     }

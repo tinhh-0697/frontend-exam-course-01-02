@@ -5,11 +5,11 @@ import Category from 'components/Aside/Category';
 import { categoryFirst, categoryLast } from 'components/Aside/categoryList';
 
 const Aside = () => {
-  const AsideStyle = styled.div`
+  const Wrapper = styled.div`
     position: fixed;
     visibility: hidden;
     max-width: 350px;
-    background-color: ${props => props.theme.background};
+    background-color: ${({ theme }) => theme.background};
     flex: 1;
     @media screen and (min-width: 919px) {
       position: relative;
@@ -17,16 +17,16 @@ const Aside = () => {
     }
   `;
   const AsideContent = styled.div`
-    background-color: ${props => props.theme.background};
+    background-color: ${({ theme }) => theme.background};
   `;
   return (
-    <AsideStyle>
+    <Wrapper>
       <Brand />
       <AsideContent>
         <Category heading="category 1" list={categoryFirst} />
         <Category heading="category 2" list={categoryLast} />
       </AsideContent>
-    </AsideStyle>
+    </Wrapper>
   );
 };
 

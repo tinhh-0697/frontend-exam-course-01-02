@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'theme/globalStyle';
@@ -15,23 +15,24 @@ import Pages from 'components/Containers/Pages';
 import Blog from 'components/Containers/Blog';
 import Ecommerce from 'components/Containers/Ecommerce';
 import Main from 'components/Main';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import { themeLight, themeDark } from './theme/globalStyle';
 
-function App() {
-  const [isLightTheme, setTheme] = useState(true);
-  const handleChangeTheme = () => {
-    setTheme(!isLightTheme);
-  };
+function App({ ui }) {
+  const { isLightTheme } = ui;
+
   const AppStyle = styled.div`
     display: flex;
     justify-content: space-between;
-    background-color: ${props => props.theme.sixth};
+    background-color: ${({ theme }) => theme.sixth};
     height: 100vh;
   `;
   const Content = styled.div`
     width: 100%;
     flex: 1;
   `;
+
   return (
     <>
       <GlobalStyle />
@@ -62,5 +63,13 @@ function App() {
     </>
   );
 }
+const mapStateToProps = state => ({
+  ui: state.ui,
+});
 
-export default App;
+App.propTypes = {
+  ui: PropTypes.shape({
+    isLightTheme: PropTypes.bool.isRequired,
+  }).isRequired,
+};
+export default connect(mapStateToProps, null)(App);

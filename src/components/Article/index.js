@@ -7,9 +7,9 @@ import TableArticle from 'components/Article/TableArticle';
 const index = () => {
   const Content = styled.div`
     border-radius: 5px;
-    background-color: ${props => props.theme.table};
+    background-color: ${({ theme }) => theme.table};
     border: 1px solid;
-    border-color: ${props => props.theme.border};
+    border-color: ${({ theme }) => theme.border};
   `;
   const Heading = styled.div`
     display: flex;
@@ -18,7 +18,7 @@ const index = () => {
     align-items: center;
   `;
   const Title = styled.h3`
-    color: ${props => props.theme.article};
+    color: ${({ theme }) => theme.article};
     font-size: 20px;
     font-weight: 400;
     text-transform: capitalize;

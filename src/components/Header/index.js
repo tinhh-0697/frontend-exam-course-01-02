@@ -10,7 +10,7 @@ const index = () => {
     display: flex;
     padding: 0 30px;
     height: 82px;
-    background-color: ${props => props.theme.light};
+    background-color: ${({ theme }) => theme.light};
   `;
   const SearchInput = styled.input`
     flex: 1;
@@ -18,7 +18,7 @@ const index = () => {
     font-size: 18px;
     font-weight: 300;
     border: 0;
-    background-color: ${props => props.theme.light};
+    background-color: ${({ theme }) => theme.light};
 
     &:focus {
       outline: 0;
@@ -41,7 +41,7 @@ const index = () => {
     transform: translateY(-50%);
     width: 24px;
     height: 24px;
-    fill: ${props => props.theme.fourty};
+    fill: ${({ theme }) => theme.fourty};
   `;
   return (
     <Header>
