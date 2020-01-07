@@ -9,6 +9,7 @@ const Aside = () => {
     position: fixed;
     visibility: hidden;
     max-width: 350px;
+    background-color: ${props => props.theme.background};
     flex: 1;
     @media screen and (min-width: 919px) {
       position: relative;

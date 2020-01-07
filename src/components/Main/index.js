@@ -1,19 +1,23 @@
 import React from 'react';
 import styled from 'styled-components';
-import Header from 'components/Container/Header';
+import Header from 'components/Header';
 import PropTypes from 'prop-types';
 
 const index = props => {
   const { children } = props;
-  const Container = styled.div`
+  const Main = styled.div`
     display: flex;
     flex-direction: column;
+    flex: 1;
+  `;
+  const Content = styled.div`
+    padding: 30px;
   `;
   return (
-    <Container>
+    <Main>
       <Header />
-      <div>{children}</div>
-    </Container>
+      <Content>{children}</Content>
+    </Main>
   );
 };
 

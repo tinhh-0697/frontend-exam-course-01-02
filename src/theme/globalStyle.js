@@ -1,72 +1,62 @@
-import styled, { createGlobalStyle, css } from 'styled-components';
+import { createGlobalStyle } from 'styled-components';
 
 export const themeLight = {
   primary: '#38C6DA',
   secondary: '#38C6DA',
   thirty: '#D5D8DB',
+  fourty: '#B8B8B8',
+  fifty: '#5A5A5A',
+  sixth: '#EEEFF1',
   title: '#757D89',
   danger: '#FB5867',
   light: '#FAFBFC',
   dark: '#EDEFF0',
+  table: '#FFF',
+  article: '#555',
   background: '#FFF',
+  row: '#F7F8F9',
   border: '#eaeced',
+  reserve: '#1E2125',
+  lightMode: true,
 };
+
 export const themeDark = {
   primary: '#1E2125',
   secondary: '#38C6DA',
   thirty: '#494C53',
+  fourty: '#84878D',
+  fifty: '#797C80',
+  sixth: '#191C1E',
   title: '#9398A2',
   danger: '#FB5867',
   light: '#1D2023',
   dark: '#191C1E',
+  table: '#1C1E22',
+  article: '#FFF',
   background: '#1E2125',
+  row: '#1E2125',
   border: '#2e3033',
+  reserve: '#FFF',
+  lightMode: false,
 };
 
-export const globalStyle = createGlobalStyle`
-  body: {
+export const GlobalStyle = createGlobalStyle`
+  body {
     padding: 0;
     margin: 0;
+    font-family: 'Rubik', 'HelveticaNeue', Helvetica, Arial, 'Lucida Grande', sans-serif;
   }
-`;
-
-export const Button = styled.button`
-  color: #fff;
-  font-size: 15px;
-  font-family: 'Rubik', sans-serif;
-  font-weight: 400;
-  text-align: center;
-  width: 83px;
-  height: 37px;
-  border: 0;
-  border-radius: 5px;
-  background-color: #6ad36e;
-  &:focus {
-    outline: 0;
+  /* clears the 'X' from Internet Explorer */
+  input::-ms-clear,
+  input::-ms-reveal {  
+    display: none;
+    width : 0;
+    height: 0; 
   }
-  ${props =>
-    (props.larger &&
-      css`
-        width: 157px;
-        font-size: 18px;
-        background-color: #38c6da;
-      `) ||
-    (props.danger &&
-      css`
-        background-color: #fb5867;
-      `)}
-`;
 
-export const Check = styled.div`
-  color: #000;
-  position: absolute;
-  margin-left: 3px;
-  margin-top: 4px;
-  width: 14px;
-  height: 8px;
-  border-bottom: 1px solid;
-  border-left: 1px solid;
-  border-color: ${props => (props.checked ? '#38C6DA' : '#CFD3D8')};
-  -webkit-transform: rotate(-45deg);
-  transform: rotate(-45deg);
+  /* clears the 'X' from Chrome */
+  input::-webkit-search-decoration,
+  input::-webkit-search-cancel-button,
+  input::-webkit-search-results-button,
+  input::-webkit-search-results-decoration { display: none; }
 `;

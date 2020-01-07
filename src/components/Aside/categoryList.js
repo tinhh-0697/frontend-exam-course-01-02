@@ -10,7 +10,7 @@ import {
   Page,
   Blog,
   Ecommerce,
-} from 'components/commons/icons';
+} from 'components/Commons/icons';
 
 export const categoryFirst = [
   {

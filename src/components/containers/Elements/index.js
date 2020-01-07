@@ -1,7 +1,16 @@
 import React from 'react';
+import styled from 'styled-components';
+import Article from 'components/Article';
 
-const Elements = () => {
-  return <div>Elements </div>;
+const index = () => {
+  const Elements = styled.div`
+    background-color: ${props => props.theme.table};
+  `;
+  return (
+    <Elements>
+      <Article />
+    </Elements>
+  );
 };
 
-export default Elements;
+export default index;
