@@ -1,4 +1,18 @@
-const initialState = {};
+import { GET_DATA } from 'redux/constants';
+
+const initialState = {
+  data: [],
+};
 export default function(state = initialState, actions) {
-  return state;
+  switch (actions.type) {
+    case GET_DATA: {
+      return {
+        ...state,
+        data: actions.payload,
+      };
+    }
+    default: {
+      return state;
+    }
+  }
 }

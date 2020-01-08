@@ -4,9 +4,6 @@ import PropTypes from 'prop-types';
 import CategoryLink from 'components/Aside/CategoryLink';
 
 const Category = ({ heading, list }) => {
-  const Wrapper = styled.div`
-    /* background-color: ${props => props.theme.background}; */
-  `;
   const Heading = styled.h3`
     margin-bottom: 20px;
     padding-top: 50px;
@@ -28,15 +25,15 @@ const Category = ({ heading, list }) => {
   `;
 
   return (
-    <Wrapper>
+    <div>
       <Heading>{heading}</Heading>
       <CategoryContent>
         {list.map(item => {
-          const { icon, title, path } = item;
-          return <CategoryLink key={title} icon={icon} title={title} path={path} />;
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          return <CategoryLink key={item.title} {...item} />;
         })}
       </CategoryContent>
-    </Wrapper>
+    </div>
   );
 };
 

@@ -1,10 +1,18 @@
 import React from 'react';
 import { Table } from 'reactstrap';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
 import Check from 'components/Commons/Check';
 import Button from 'components/Commons/Button';
-import styled, { css } from 'styled-components';
+import TableHeading from 'components/Article/TableHeading';
+import TableName from 'components/Article/TableName';
+import TableView from 'components/Article/TableView';
+import TableRow from 'components/Article/TableRow';
+import TableOptions from 'components/Article/TableOptions';
+import TableStatus from 'components/Article/TableStatus';
+import styled from 'styled-components';
 
-const TableArticle = () => {
+const TableArticle = ({ data }) => {
   const TableStyling = styled(Table)`
     margin-bottom: 30px;
     th {
@@ -15,55 +23,9 @@ const TableArticle = () => {
       vertical-align: middle;
     }
   `;
-  const TableHeading = styled.th`
-    padding-bottom: 15px;
-    color: #555555;
-    font-size: 17px;
-    font-weight: 400;
-    :first-of-type {
-      padding-left: 19px;
-    }
-    ${props =>
-      props.center &&
-      css`
-        text-align: center;
-      `}
-  `;
   const TableBody = styled.tbody`
     border-top: 1px solid;
     border-color: ${({ theme }) => theme.border};
-  `;
-  const Row = styled.tr`
-    height: 85px;
-    :nth-of-type(odd) {
-      height: 75px;
-      background-color: ${({ theme }) => theme.row} !important;
-    }
-    :hover {
-      background-color: ${({ theme }) => theme.row} !important;
-    }
-  `;
-
-  const Name = styled.td`
-    color: #a0a0a0;
-    font-size: 17px;
-    font-weight: 300;
-    :first-of-type {
-      padding-left: 19px;
-    }
-  `;
-  const Views = styled.td`
-    color: #676767;
-    font-size: 17px;
-    font-weight: 400;
-  `;
-  const Status = styled.td`
-    text-align: center;
-  `;
-  const Options = styled.td`
-    :first-of-type {
-      padding-right: 37px;
-    }
   `;
 
   return (
@@ -77,30 +39,38 @@ const TableArticle = () => {
         </tr>
       </thead>
       <TableBody>
-        <Row>
-          <Name scope="row">Creating Remarkable Poster Creating Remarkable Poster</Name>
-          <Views>2567</Views>
-          <Status>
-            <Check />
-          </Status>
-          <Options>
-            <Button mr={11}>Edit</Button>
-            <Button danger>Delete</Button>
-          </Options>
-        </Row>
-        <Row>
-          <Name scope="row">Creating Remarkable Poster Creating Remarkable Poster</Name>
-          <Views>3735</Views>
-          <Status>
-            <Check checked />
-          </Status>
-          <Options>
-            <Button mr={11}>Edit</Button>
-            <Button danger> Delete</Button>
-          </Options>
-        </Row>
+        {data.map(item => {
+          const { id, name, views, status } = item;
+          return (
+            <TableRow key={id}>
+              <TableName scope="row">{name}</TableName>
+              <TableView>{views}</TableView>
+              <TableStatus>
+                <Check checked={status} />
+              </TableStatus>
+              <TableOptions>
+                <Button mr={11}>Edit</Button>
+                <Button danger>Delete</Button>
+              </TableOptions>
+            </TableRow>
+          );
+        })}
       </TableBody>
     </TableStyling>
   );
 };
-export default TableArticle;
+
+TableArticle.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      name: PropTypes.string.isRequired,
+      views: PropTypes.number.isRequired,
+      status: PropTypes.bool.isRequired,
+    }),
+  ).isRequired,
+};
+
+const mapStateToProps = state => ({ data: state.data.data });
+
+export default connect(mapStateToProps, null)(TableArticle);

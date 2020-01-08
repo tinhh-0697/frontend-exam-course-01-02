@@ -10,6 +10,7 @@ const index = () => {
     display: flex;
     padding: 0 30px;
     height: 82px;
+    z-index: 10;
     background-color: ${({ theme }) => theme.light};
   `;
   const SearchInput = styled.input`

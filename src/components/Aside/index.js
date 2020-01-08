@@ -6,17 +6,26 @@ import { categoryFirst, categoryLast } from 'components/Aside/categoryList';
 
 const Aside = () => {
   const Wrapper = styled.div`
-    position: fixed;
-    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    visibility: visible;
     max-width: 350px;
+
     background-color: ${({ theme }) => theme.background};
     flex: 1;
-    @media screen and (min-width: 919px) {
-      position: relative;
-      visibility: visible;
+    @media screen and (max-width: 919px) {
+      position: fixed;
+      visibility: hidden;
+    }
+    @media screen and (max-width: 1048px) {
+      max-width: 240px;
     }
   `;
   const AsideContent = styled.div`
+    flex: 1;
+    width: 100%;
+    overflow-y: auto;
     background-color: ${({ theme }) => theme.background};
   `;
   return (

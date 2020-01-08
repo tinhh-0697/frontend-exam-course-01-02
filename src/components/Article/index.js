@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styled from 'styled-components';
 import Button from 'components/Commons/Button';
 import { Plus } from 'components/Commons/icons';
 import TableArticle from 'components/Article/TableArticle';
+import { connect } from 'react-redux';
+import { getData } from 'redux/actions/DataAction';
+import PropTypes from 'prop-types';
 
-const index = () => {
+// eslint-disable-next-line no-shadow
+const Article = ({ getData }) => {
   const Content = styled.div`
+    margin-bottom: 30px;
     border-radius: 5px;
     background-color: ${({ theme }) => theme.table};
     border: 1px solid;
@@ -29,6 +34,11 @@ const index = () => {
     height: 14px;
     fill: #fff;
   `;
+
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
     <Content>
       <Heading>
@@ -43,4 +53,10 @@ const index = () => {
   );
 };
 
-export default index;
+Article.propTypes = {
+  getData: PropTypes.func.isRequired,
+};
+
+const mapDispatchToProps = { getData };
+
+export default connect(null, mapDispatchToProps)(Article);

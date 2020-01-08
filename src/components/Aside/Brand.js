@@ -4,10 +4,12 @@ import styled from 'styled-components';
 
 const Brand = () => {
   const Wrapper = styled.div`
+    width: 350px;
     display: flex;
     align-items: center;
     padding-left: 35px;
     height: 82px;
+    z-index: 10;
     background-color: #38c6da;
   `;
   const BrandLogo = styled.img`

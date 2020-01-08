@@ -7,6 +7,9 @@ export const themeLight = {
   fourty: '#B8B8B8',
   fifty: '#5A5A5A',
   sixth: '#EEEFF1',
+  seventh: '#CFCFCF',
+  eighth: '#FFF',
+  ninth: '#E2E2E2',
   title: '#757D89',
   danger: '#FB5867',
   light: '#FAFBFC',
@@ -17,7 +20,6 @@ export const themeLight = {
   row: '#F7F8F9',
   border: '#eaeced',
   reserve: '#1E2125',
-  lightMode: true,
 };
 
 export const themeDark = {
@@ -27,6 +29,9 @@ export const themeDark = {
   fourty: '#84878D',
   fifty: '#797C80',
   sixth: '#191C1E',
+  seventh: '#222427',
+  eighth: '#2B2D31',
+  ninth: '#2B2D31',
   title: '#9398A2',
   danger: '#FB5867',
   light: '#1D2023',
@@ -37,11 +42,12 @@ export const themeDark = {
   row: '#1E2125',
   border: '#2e3033',
   reserve: '#FFF',
-  lightMode: false,
 };
 
 export const GlobalStyle = createGlobalStyle`
   body {
+    position: fixed;
+    width: 100%;
     padding: 0;
     margin: 0;
     font-family: 'Rubik', 'HelveticaNeue', Helvetica, Arial, 'Lucida Grande', sans-serif;

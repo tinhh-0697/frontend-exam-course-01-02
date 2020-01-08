@@ -16,6 +16,7 @@ export const categoryFirst = [
   {
     title: 'dashboard',
     icon: Dashboard,
+    notiNumber: 2,
     path: '/',
   },
   {

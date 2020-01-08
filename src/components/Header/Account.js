@@ -15,6 +15,7 @@ const Account = () => {
   const AccountName = styled.h2`
     margin: 0 20px 0 0;
     color: ${({ theme }) => theme.fifty};
+
     font-size: 20px;
     font-family: 'Rubik', sans-serif;
     font-weight: 400;
@@ -28,17 +29,13 @@ const Account = () => {
     padding: 0;
     background-color: transparent;
     border: 0;
-    &:hover {
-      background-color: transparent;
-      border: 0;
-      outline: 0;
-      box-shadow: 0;
-    }
+    &:hover,
+    &:active,
     &:focus {
-      background-color: transparent;
-      border: 0;
-      outline: 0;
-      box-shadow: 0;
+      background-color: transparent !important;
+      border: 0 !important;
+      outline: 0 !important;
+      box-shadow: none !important;
     }
   `;
   return (

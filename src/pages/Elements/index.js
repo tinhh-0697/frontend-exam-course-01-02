@@ -9,6 +9,7 @@ const index = () => {
   return (
     <Elements>
       <Article />
+      <Article />
     </Elements>
   );
 };
