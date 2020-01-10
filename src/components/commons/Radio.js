@@ -18,7 +18,7 @@ const Radio = ({ checked }) => {
     width: 10px;
     height: 10px;
     border-radius: 50%;
-    background-color: ${({ theme }) => (checked ? '#38C6DA' : theme.seventh)};
+    background-color: ${({ theme }) => (checked ? theme.color.sixth : theme.seventh)};
   `;
   return (
     <Wrapper>

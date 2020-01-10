@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Sun, Moon } from 'components/Commons/icons';
 import styled from 'styled-components';
 import { changeTheme } from 'redux/actions/UIActions';
@@ -38,9 +38,21 @@ const SwitchTheme = ({ changeTheme, isLightTheme }) => {
     width: 30px;
     transition: transform 0.7s linear;
   `;
+
   const handleChangeTheme = () => {
-    changeTheme();
+    window.localStorage.setItem('lightMode', !isLightTheme);
+    changeTheme(!isLightTheme);
   };
+
+  useEffect(() => {
+    const localTheme = window.localStorage.getItem('lightMode');
+    if (localTheme === null) {
+      window.localStorage.setItem('lightMode', true);
+    }
+    if (JSON.parse(localTheme) !== isLightTheme) {
+      changeTheme(JSON.parse(localTheme));
+    }
+  }, [isLightTheme]);
 
   return (
     <SwitchButton type="button" onClick={handleChangeTheme}>

@@ -16,23 +16,23 @@ const index = () => {
   const SearchInput = styled.input`
     flex: 1;
     padding-left: 53px;
-    font-size: 18px;
-    font-weight: 300;
+    font-size: ${({ theme }) => theme.fontSize.base};
+    font-weight: ${({ theme }) => theme.fontWeight.light};
     border: 0;
     background-color: ${({ theme }) => theme.light};
 
     &:focus {
       outline: 0;
-      color: #b5b5b5;
+      color: ${({ theme }) => theme.color.ninth};
     }
     &::placeholder {
-      color: #b5b5b5;
+      color: ${({ theme }) => theme.color.ninth};
     }
     &:-ms-input-placeholder {
-      color: red; /* Internet Explorer 10-11 */
+      color: ${({ theme }) => theme.color.ninth}; /* Internet Explorer 10-11 */
     }
     &::-ms-input-placeholder {
-      color: red; /* Microsoft Edge */
+      color: ${({ theme }) => theme.color.ninth}; /* Microsoft Edge */
     }
   `;
   const SearchIcon = styled(Search)`

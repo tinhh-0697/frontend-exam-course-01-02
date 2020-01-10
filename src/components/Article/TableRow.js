@@ -5,12 +5,16 @@ import PropTypes from 'prop-types';
 const TableRow = ({ children }) => {
   const Row = styled.tr`
     height: 85px;
-    :nth-of-type(odd) {
-      height: 75px;
-      background-color: ${({ theme }) => theme.row} !important;
-    }
-    :hover {
-      background-color: ${({ theme }) => theme.row} !important;
+    &&& {
+      background-color: ${({ theme }) => theme.background};
+
+      :nth-of-type(even) {
+        height: 75px;
+        background-color: ${({ theme }) => theme.row};
+      }
+      :hover {
+        background-color: ${({ theme }) => theme.row};
+      }
     }
   `;
   return <Row>{children}</Row>;

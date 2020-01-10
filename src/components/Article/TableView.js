@@ -4,9 +4,10 @@ import PropTypes from 'prop-types';
 
 const TableView = ({ children }) => {
   const Views = styled.td`
-    color: #676767;
-    font-size: 17px;
-    font-weight: 400;
+    width: 7%;
+    color: ${({ theme }) => theme.color.thirty};
+    font-size: ${({ theme }) => theme.fontSize.normal};
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
   `;
   return <Views>{children}</Views>;
 };

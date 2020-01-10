@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const TableOptions = ({ children }) => {
   const Options = styled.td`
+    width: 250px;
     text-align: center;
     :first-of-type {
       padding-right: 37px;

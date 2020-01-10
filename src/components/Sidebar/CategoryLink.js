@@ -1,5 +1,5 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import styled from 'styled-components';
 
@@ -7,7 +7,21 @@ const CategoryLink = ({ icon, title, notiNumber, path }) => {
   const Content = styled.li`
     position: relative;
     padding-left: 34px;
-    transition: 0.25s;
+
+    @media screen and (max-width: 1063px) {
+      padding-left: 0;
+    }
+  `;
+  const LinkMenu = styled(NavLink)`
+    display: flex;
+    align-items: center;
+    padding: 17px 0;
+    width: 100%;
+
+    @media screen and (max-width: 1063px) {
+      justify-content: center;
+    }
+
     &:before {
       content: '';
       visibility: hidden;
@@ -15,18 +29,23 @@ const CategoryLink = ({ icon, title, notiNumber, path }) => {
       left: 0;
       width: 4px;
       height: 100%;
-      background-color: #38c6da;
+      background-color: ${({ theme }) => theme.color.sixth};
     }
-    &:hover:before {
-      visibility: visible;
-    }
-  `;
-  const LinkMenu = styled(Link)`
-    padding: 17px 0;
-    display: flex;
-    align-items: center;
+
     &:hover {
       text-decoration: none;
+    }
+
+    &.active {
+      svg {
+        fill: ${({ theme }) => theme.color.sixth};
+      }
+      h4 {
+        color: ${({ theme }) => theme.color.sixth};
+      }
+      &:before {
+        visibility: visible;
+      }
     }
   `;
   const Icon = styled(icon)`
@@ -35,22 +54,28 @@ const CategoryLink = ({ icon, title, notiNumber, path }) => {
     height: 26px;
     fill: ${({ theme }) => theme.thirty};
 
-    transition: 0.25s;
+    @media screen and (max-width: 1063px) {
+      margin-right: 0;
+    }
+
     ${Content}:hover & {
-      fill: #38c6da;
+      fill: ${({ theme }) => theme.color.sixth};
     }
   `;
   const Title = styled.h4`
     margin-bottom: 0;
     color: ${({ theme }) => theme.title};
-
-    font-size: 18px;
+    font-size: ${({ theme }) => theme.fontSize.base};
     font-family: 'Rubik', sans-serif;
-    font-weight: 400;
+    font-weight: ${({ theme }) => theme.fontWeight.light};
     text-transform: capitalize;
-    transition: 0.25s;
+
+    @media screen and (max-width: 1063px) {
+      display: none;
+    }
+
     ${Content}:hover & {
-      color: #38c6da;
+      color: ${({ theme }) => theme.color.sixth};
     }
   `;
   const NotificationNumber = styled.p`
@@ -58,20 +83,26 @@ const CategoryLink = ({ icon, title, notiNumber, path }) => {
     margin: 0 31px 0 auto;
     width: 50px;
     height: 27px;
-    color: #fff;
-    font-size: 18px;
-    font-weight: 400;
+    color: ${({ theme }) => theme.color.primary};
+    font-size: ${({ theme }) => theme.fontSize.base};
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
     text-align: center;
     border-radius: 27px;
-    background-color: #38c6da;
+    background-color: ${({ theme }) => theme.color.sixth};
+
+    @media screen and (max-width: 1063px) {
+      display: none;
+    }
+
     @media screen and (max-width: 1048px) {
       margin-right: 10px;
       width: 40px;
     }
   `;
+
   return (
     <Content>
-      <LinkMenu to={path}>
+      <LinkMenu exact to={path}>
         <Icon />
         <Title>{title}</Title>
         {notiNumber && <NotificationNumber>{notiNumber}</NotificationNumber>}

@@ -1,25 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
-import CategoryLink from 'components/Aside/CategoryLink';
+import CategoryLink from 'components/Sidebar/CategoryLink';
 
 const Category = ({ heading, list }) => {
   const Heading = styled.h3`
     margin-bottom: 20px;
     padding-top: 50px;
     padding-left: 34px;
-    color: #bcbfc4;
-    font-size: 18px;
+    color: ${({ theme }) => theme.color.tenth};
+    font-size: ${({ theme }) => theme.fontSize.base};
     font-family: 'Rubik', sans-serif;
-    font-weight: 400;
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
     text-transform: uppercase;
+
+    @media screen and (max-width: 1063px) {
+      display: none;
+    }
   `;
   const CategoryContent = styled.ul`
     display: flex;
     flex-direction: column;
-    list-style-type: none;
-    padding: 15px 0 0 0;
     margin-bottom: 6px;
+    padding: 15px 0 0 0;
+    list-style-type: none;
     border-top: 1px solid;
     border-color: ${({ theme }) => theme.border};
   `;

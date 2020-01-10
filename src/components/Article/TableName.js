@@ -4,23 +4,23 @@ import PropTypes from 'prop-types';
 
 const TableName = ({ children }) => {
   const Name = styled.td`
-    color: #a0a0a0;
-    font-size: 17px;
-    font-weight: 300;
+    color: ${({ theme }) => theme.color.second};
+    font-size: ${({ theme }) => theme.fontSize.normal};
+    font-weight: ${({ theme }) => theme.fontWeight.light};
     :first-of-type {
       padding-left: 19px;
     }
-    p {
+    span {
       margin-bottom: 0;
       max-width: 225px;
-      white-space: nowrap;
       overflow: hidden;
+      white-space: nowrap;
       text-overflow: ellipsis;
     }
   `;
   return (
-    <Name scope="row">
-      <p>{children}</p>
+    <Name>
+      <span>{children}</span>
     </Name>
   );
 };

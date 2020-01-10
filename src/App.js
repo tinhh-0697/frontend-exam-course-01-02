@@ -2,7 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'theme/globalStyle';
-import Aside from 'components/Aside';
+import Sidebar from 'components/Sidebar';
 import Dashboard from 'pages/Dashboard';
 import Home from 'pages/Home';
 import Widget from 'pages/Widget';
@@ -39,7 +39,7 @@ function App({ ui }) {
       <ThemeProvider theme={isLightTheme ? themeLight : themeDark}>
         <Router>
           <AppStyle>
-            <Aside />
+            <Sidebar />
             <Main>
               <Switch>
                 <Content>
@@ -63,6 +63,7 @@ function App({ ui }) {
     </>
   );
 }
+
 const mapStateToProps = state => ({
   ui: state.ui,
 });
@@ -72,4 +73,5 @@ App.propTypes = {
     isLightTheme: PropTypes.bool.isRequired,
   }).isRequired,
 };
+
 export default connect(mapStateToProps, null)(App);

@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 const TableStatus = ({ children }) => {
   const Status = styled.td`
+    width: 5%;
     text-align: center;
   `;
   return <Status>{children}</Status>;

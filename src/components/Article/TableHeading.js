@@ -5,9 +5,10 @@ import PropTypes from 'prop-types';
 const TableHeading = ({ children, center }) => {
   const Wrapper = styled.th`
     padding-bottom: 15px;
-    color: #555555;
-    font-size: 17px;
-    font-weight: 400;
+    color: ${({ theme }) => theme.color.fourty};
+    font-size: ${({ theme }) => theme.fontSize.normal};
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
+
     :first-of-type {
       padding-left: 19px;
     }

@@ -1,42 +1,44 @@
 import React from 'react';
 import styled from 'styled-components';
-import Brand from 'components/Aside/Brand';
-import Category from 'components/Aside/Category';
-import { categoryFirst, categoryLast } from 'components/Aside/categoryList';
+import Brand from 'components/Sidebar/Brand';
+import Category from 'components/Sidebar/Category';
+import { categoryFirst, categoryLast } from 'components/Sidebar/DataCategory';
 
-const Aside = () => {
+const Sidebar = () => {
   const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
+    flex: 1;
     position: relative;
     visibility: visible;
     max-width: 350px;
-
     background-color: ${({ theme }) => theme.background};
-    flex: 1;
-    @media screen and (max-width: 919px) {
-      position: fixed;
-      visibility: hidden;
-    }
+
     @media screen and (max-width: 1048px) {
       max-width: 240px;
     }
+
+    @media screen and (max-width: 1063px) {
+      max-width: 70px;
+    }
   `;
-  const AsideContent = styled.div`
+
+  const SidebarContent = styled.div`
     flex: 1;
     width: 100%;
     overflow-y: auto;
     background-color: ${({ theme }) => theme.background};
   `;
+
   return (
     <Wrapper>
       <Brand />
-      <AsideContent>
+      <SidebarContent>
         <Category heading="category 1" list={categoryFirst} />
         <Category heading="category 2" list={categoryLast} />
-      </AsideContent>
+      </SidebarContent>
     </Wrapper>
   );
 };
 
-export default Aside;
+export default Sidebar;

@@ -1,13 +1,14 @@
-import { CHANGE_THEME, GET_DATA } from 'redux/constants';
+import { DELETE_DATA, GET_DATA, LOADING_DATA } from 'redux/constants';
 import firebase from '../../firebase/firebase';
 
 const db = firebase.firestore();
 
-export const changeTheme = () => dispatch => {
-  dispatch({ type: CHANGE_THEME });
+export const deleteData = id => dispatch => {
+  dispatch({ type: DELETE_DATA, payload: id });
 };
 
 export const getData = () => dispatch => {
+  dispatch({ type: LOADING_DATA });
   const data = [];
   db.collection('elements')
     .get()
@@ -19,5 +20,8 @@ export const getData = () => dispatch => {
       }
       dispatch({ type: GET_DATA, payload: data });
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({ type: GET_DATA, payload: [] });
+      console.log(err);
+    });
 };

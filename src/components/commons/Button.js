@@ -1,53 +1,69 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import styled, { css } from 'styled-components';
 import PropTypes from 'prop-types';
+import { Button } from 'reactstrap';
 
-const Button = ({ children, larger, danger, mr }) => {
-  const ButtonStyling = styled.button`
+const Buttons = ({ children, larger, danger, mr, handleClick, id }) => {
+  const ButtonStyling = styled(Button)`
     margin-right: ${`${mr}px`};
     width: 83px;
     height: 37px;
-    color: #fff;
-    font-size: 15px;
+    color: ${({ theme }) => theme.color.primary};
+    font-size: ${({ theme }) => theme.fontSize.small};
     font-family: 'Rubik', sans-serif;
-    font-weight: 400;
+    font-weight: ${({ theme }) => theme.fontWeight.light};
     text-align: center;
     border: 0;
     border-radius: 5px;
-    background-color: #6ad36e;
+    background-color: ${({ theme }) => theme.color.fifty};
+
     &:focus {
       outline: 0;
     }
+
     ${() =>
       larger &&
       css`
         width: 157px;
         height: 51px;
-        font-size: 18px;
-        background-color: #38c6da;
+        font-size: ${({ theme }) => theme.fontSize.base};
+        background-color: ${({ theme }) => theme.color.sixth};
       `};
+
     ${() =>
       danger &&
       css`
-        background-color: #fb5867;
+        background-color: ${({ theme }) => theme.color.seventh};
       `}
   `;
 
-  return <ButtonStyling>{children}</ButtonStyling>;
+  const handleButtonClick = useCallback(() => {
+    if (id) {
+      handleClick(id);
+    } else {
+      handleClick();
+    }
+  }, [id]);
+
+  return <ButtonStyling onClick={handleButtonClick}>{children}</ButtonStyling>;
 };
 
-Button.defaultProps = {
+Buttons.defaultProps = {
   children: false,
   larger: false,
   danger: false,
   mr: 0,
+  id: null,
+  handleClick: undefined,
 };
 
-Button.propTypes = {
+Buttons.propTypes = {
   children: PropTypes.node,
   larger: PropTypes.bool,
   danger: PropTypes.bool,
   mr: PropTypes.number,
+  id: PropTypes.number,
+  handleClick: PropTypes.func,
 };
 
-export default Button;
+export default Buttons;

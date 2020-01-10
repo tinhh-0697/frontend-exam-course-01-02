@@ -16,9 +16,9 @@ const Account = () => {
     margin: 0 20px 0 0;
     color: ${({ theme }) => theme.fifty};
 
-    font-size: 20px;
+    font-size: ${({ theme }) => theme.fontSize.big};
     font-family: 'Rubik', sans-serif;
-    font-weight: 400;
+    font-weight: ${({ theme }) => theme.fontWeight.regular};
   `;
   const SettingIcon = styled(Setting)`
     width: 32px;

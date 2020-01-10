@@ -3,8 +3,7 @@ import styled from 'styled-components';
 import Header from 'components/Header';
 import PropTypes from 'prop-types';
 
-const Main = props => {
-  const { children } = props;
+const Main = ({ children }) => {
   const Wrapper = styled.div`
     display: flex;
     flex-direction: column;
@@ -15,6 +14,7 @@ const Main = props => {
     padding: 30px;
     overflow-y: auto;
   `;
+
   return (
     <Wrapper>
       <Header />

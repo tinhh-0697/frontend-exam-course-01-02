@@ -1,9 +1,13 @@
-import { CHANGE_THEME, GET_DATA } from 'redux/constants';
+import { CHANGE_THEME, LOADING_UI, STOP_LOADING } from 'redux/constants';
 
-export const changeTheme = () => dispatch => {
-  dispatch({ type: CHANGE_THEME });
+export const changeTheme = theme => dispatch => {
+  dispatch({ type: CHANGE_THEME, payload: theme });
 };
 
-export const getData = data => dispatch => {
-  dispatch({ type: GET_DATA, payload: data });
+export const setLoading = () => dispatch => {
+  dispatch({ type: LOADING_UI });
+};
+
+export const stopLoading = () => dispatch => {
+  dispatch({ type: STOP_LOADING });
 };

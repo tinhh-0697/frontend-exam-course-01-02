@@ -1,17 +1,32 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { useEffect } from 'react';
 import Article from 'components/Article';
+import Loading from 'components/Loading';
+import { connect } from 'react-redux';
+import { getData } from 'redux/actions/DataAction';
+import PropTypes from 'prop-types';
 
-const index = () => {
-  const Elements = styled.div`
-    /* background-color: ${({ theme }) => theme.table}; */
-  `;
+// eslint-disable-next-line no-shadow
+const Elements = ({ getData, isLoading }) => {
+  useEffect(() => {
+    getData();
+  }, []);
+
   return (
-    <Elements>
+    <div>
+      {isLoading && <Loading />}
       <Article />
       <Article />
-    </Elements>
+    </div>
   );
 };
 
-export default index;
+Elements.propTypes = {
+  getData: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+};
+
+const mapStateToProps = state => ({ isLoading: state.data.isLoading });
+
+const mapDispatchToProps = { getData };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Elements);
