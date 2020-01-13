@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import { Plus } from 'components/Commons/icons';
+import { clearCurrentItem } from 'redux/actions/DataAction';
 import styled from 'styled-components';
 import Button from 'components/Commons/Button';
 import TableArticle from 'components/Article/TableArticle';
@@ -8,7 +9,7 @@ import PropTypes from 'prop-types';
 import Modals from 'components/Modal';
 
 // eslint-disable-next-line no-shadow
-const Article = ({ data }) => {
+const Article = ({ data, clearCurrentItem }) => {
   const [modal, setModal] = useState(false);
 
   const Content = styled.div`
@@ -44,12 +45,17 @@ const Article = ({ data }) => {
     setModal(!modal);
   };
 
+  const toggleAndClearCurrentItem = () => {
+    clearCurrentItem();
+    setModal(!modal);
+  };
+
   return (
     <Content>
       <Modals isOpen={modal} toggle={ToggleModal} />
       <Heading>
         <Title>articles</Title>
-        <Button larger handleClick={ToggleModal}>
+        <Button larger onClick={toggleAndClearCurrentItem}>
           Add new
           <AddIcon />
         </Button>
@@ -68,8 +74,11 @@ Article.propTypes = {
       status: PropTypes.bool.isRequired,
     }),
   ).isRequired,
+  clearCurrentItem: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({ data: state.data.data });
 
-export default connect(mapStateToProps, null)(Article);
+const mapDispatchToProps = { clearCurrentItem };
+
+export default connect(mapStateToProps, mapDispatchToProps)(Article);

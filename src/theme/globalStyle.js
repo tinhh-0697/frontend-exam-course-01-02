@@ -1,4 +1,5 @@
 import { createGlobalStyle } from 'styled-components';
+import { color, fontSize, fontWeight } from 'theme/variable';
 
 export const themeLight = {
   primary: '#38C6DA',
@@ -21,30 +22,9 @@ export const themeLight = {
   border: '#eaeced',
   reserve: '#1E2125',
   loading: '#FFF',
-  color: {
-    primary: '#fff',
-    second: '#a0a0a0',
-    thirty: '#676767',
-    fourty: '#555555',
-    fifty: '#6ad36e',
-    sixth: '#38c6da',
-    seventh: '#fb5867',
-    eight: '#000',
-    ninth: '#b5b5b5',
-    tenth: '#bcbfc4',
-  },
-  fontSize: {
-    small: '15px',
-    normal: '17px',
-    base: '18px',
-    big: '20px',
-    bigest: '25px',
-  },
-  fontWeight: {
-    light: 300,
-    regular: 400,
-    medium: 500,
-  },
+  color,
+  fontSize,
+  fontWeight,
 };
 
 export const themeDark = {
@@ -68,30 +48,9 @@ export const themeDark = {
   border: '#2e3033',
   reserve: '#FFF',
   loading: 'rgba(0,0,0)',
-  color: {
-    primary: '#fff',
-    second: '#a0a0a0',
-    thirty: '#676767',
-    fourty: '#555555',
-    fifty: '#6ad36e',
-    sixth: '#38c6da',
-    seventh: '#fb5867',
-    eight: '#000',
-    ninth: '#b5b5b5',
-    tenth: '#bcbfc4',
-  },
-  fontSize: {
-    small: '15px',
-    normal: '17px',
-    base: '18px',
-    big: '20px',
-    bigest: '25px',
-  },
-  fontWeight: {
-    light: 300,
-    regular: 400,
-    medium: 500,
-  },
+  color,
+  fontSize,
+  fontWeight,
 };
 
 export const GlobalStyle = createGlobalStyle`

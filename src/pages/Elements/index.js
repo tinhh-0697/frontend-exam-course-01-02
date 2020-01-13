@@ -10,7 +10,6 @@ const Elements = ({ getData, isLoading }) => {
   useEffect(() => {
     getData();
   }, []);
-
   return (
     <div>
       {isLoading && <Loading />}

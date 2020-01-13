@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'reactstrap';
 import { connect } from 'react-redux';
-import { deleteData } from 'redux/actions/DataAction';
+import { deleteData, getCurrentItem } from 'redux/actions/DataAction';
 import PropTypes from 'prop-types';
 import Check from 'components/Commons/Check';
 import Button from 'components/Commons/Button';
@@ -12,9 +12,10 @@ import TableRow from 'components/Article/TableRow';
 import TableOptions from 'components/Article/TableOptions';
 import TableStatus from 'components/Article/TableStatus';
 import styled from 'styled-components';
+import format from 'components/Commons/formatPrice';
 
 // eslint-disable-next-line no-shadow
-const TableArticle = ({ data, deleteData, toggle }) => {
+const TableArticle = ({ data, deleteData, getCurrentItem, toggle }) => {
   const TableStyling = styled(Table)`
     margin-bottom: 30px;
     th {
@@ -30,6 +31,13 @@ const TableArticle = ({ data, deleteData, toggle }) => {
     border-bottom: 1px solid;
     border-color: ${({ theme }) => theme.border};
   `;
+
+  const openModal = id => () => {
+    getCurrentItem(id);
+    toggle();
+  };
+
+  const deleteItem = id => () => deleteData(id);
 
   return (
     <>
@@ -48,15 +56,15 @@ const TableArticle = ({ data, deleteData, toggle }) => {
             return (
               <TableRow key={id}>
                 <TableName scope="row">{name}</TableName>
-                <TableView>{views}</TableView>
+                <TableView>{format(views)}</TableView>
                 <TableStatus>
                   <Check checked={status} />
                 </TableStatus>
                 <TableOptions>
-                  <Button mr={11} handleClick={toggle}>
+                  <Button mr={11} onClick={openModal(id)}>
                     Edit
                   </Button>
-                  <Button danger id={id} handleClick={deleteData}>
+                  <Button danger onClick={deleteItem(id)}>
                     Delete
                   </Button>
                 </TableOptions>
@@ -79,8 +87,10 @@ TableArticle.propTypes = {
     }),
   ).isRequired,
   deleteData: PropTypes.func.isRequired,
+  getCurrentItem: PropTypes.func.isRequired,
+  toggle: PropTypes.func.isRequired,
 };
 
-const mapDispatchToProps = { deleteData };
+const mapDispatchToProps = { deleteData, getCurrentItem };
 
 export default connect(null, mapDispatchToProps)(TableArticle);

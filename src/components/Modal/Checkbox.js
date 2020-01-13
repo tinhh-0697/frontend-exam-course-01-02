@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Button } from 'reactstrap';
 import styled from 'styled-components';
 
-const Checkbox = () => {
-  const [active, setActive] = useState(false);
+const Checkbox = ({ checked, secondHandle }) => {
+  const [active, setActive] = useState(checked);
 
   const CheckBoxStyling = styled(Button)`
     height: 37px;
@@ -15,9 +15,14 @@ const Checkbox = () => {
     }
   `;
 
+  const handleClick = () => {
+    secondHandle('status', !active);
+    setActive(!active);
+  };
+
   return (
     <div>
-      <CheckBoxStyling onClick={() => setActive(!active)} active={active}>
+      <CheckBoxStyling onClick={handleClick} active={active}>
         {active ? 'Activated' : 'Active'}
       </CheckBoxStyling>
     </div>
