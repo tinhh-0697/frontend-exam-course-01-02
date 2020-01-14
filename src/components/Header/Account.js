@@ -3,8 +3,10 @@ import styled from 'styled-components';
 import { Setting } from 'components/Commons/icons';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
 import { connect } from 'react-redux';
+import { logOutUser } from 'redux/actions/UserAction';
+import PropTypes from 'prop-types';
 
-const Account = ({ userInfo }) => {
+const Account = ({ userInfo, logOutUser }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
@@ -39,6 +41,7 @@ const Account = ({ userInfo }) => {
       box-shadow: none !important;
     }
   `;
+
   return (
     <Wrapper>
       <AccountName>{userInfo}</AccountName>
@@ -48,7 +51,9 @@ const Account = ({ userInfo }) => {
         </Toggle>
         <DropdownMenu right>
           <DropdownItem>
-            <Button color="primary">Sign out</Button>
+            <Button onClick={logOutUser} color="primary">
+              Sign out
+            </Button>
           </DropdownItem>
         </DropdownMenu>
       </Dropdown>
@@ -56,6 +61,13 @@ const Account = ({ userInfo }) => {
   );
 };
 
+Account.propTypes = {
+  userInfo: PropTypes.string.isRequired,
+  logOutUser: PropTypes.func.isRequired,
+};
+
 const mapStateToProps = state => ({ userInfo: state.user.userInfo });
 
-export default connect(mapStateToProps, null)(Account);
+const mapDispacthToProps = { logOutUser };
+
+export default connect(mapStateToProps, mapDispacthToProps)(Account);
