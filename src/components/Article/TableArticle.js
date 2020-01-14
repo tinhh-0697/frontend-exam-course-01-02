@@ -12,7 +12,7 @@ import TableRow from 'components/Article/TableRow';
 import TableOptions from 'components/Article/TableOptions';
 import TableStatus from 'components/Article/TableStatus';
 import styled from 'styled-components';
-import format from 'components/Commons/formatPrice';
+import format from 'utils/formatNumber';
 
 // eslint-disable-next-line no-shadow
 const TableArticle = ({ data, deleteData, getCurrentItem, toggle }) => {

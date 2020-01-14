@@ -12,6 +12,7 @@ export const color = {
 };
 
 export const fontSize = {
+  smaller: '13px',
   small: '15px',
   normal: '17px',
   base: '18px',

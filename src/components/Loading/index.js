@@ -6,9 +6,18 @@ const Loading = () => {
     from {transform: rotate(0deg);}
     to   {transform: rotate(360deg);}
   `;
+
   const Wrapper = styled.div`
     z-index: 20;
+
+    &:after {
+      position: absolute;
+      content: '';
+      width: 100vw;
+      height: 100vh;
+    }
   `;
+
   const Icon = styled.div`
     box-shadow: 0px 0px 0px 1500px rgba(0, 0, 0, 0.3);
     position: absolute;

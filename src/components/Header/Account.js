@@ -2,8 +2,9 @@ import React, { useState } from 'react';
 import styled from 'styled-components';
 import { Setting } from 'components/Commons/icons';
 import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
+import { connect } from 'react-redux';
 
-const Account = () => {
+const Account = ({ userInfo }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
@@ -40,7 +41,7 @@ const Account = () => {
   `;
   return (
     <Wrapper>
-      <AccountName>Kaie Reed</AccountName>
+      <AccountName>{userInfo}</AccountName>
       <Dropdown isOpen={dropdownOpen} toggle={toggle}>
         <Toggle>
           <SettingIcon />
@@ -55,4 +56,6 @@ const Account = () => {
   );
 };
 
-export default Account;
+const mapStateToProps = state => ({ userInfo: state.user.userInfo });
+
+export default connect(mapStateToProps, null)(Account);

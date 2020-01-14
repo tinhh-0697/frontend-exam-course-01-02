@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const InputGroup = styled.div`
   display: flex;
-  align-items: center;
+  flex-direction: column;
   margin-bottom: 15px;
 `;
 
@@ -38,4 +38,10 @@ export const InputField = styled.input`
   &::-ms-input-placeholder {
     color: ${({ theme }) => theme.color.article}; /* Microsoft Edge */
   }
+`;
+
+export const InputError = styled.div`
+  font-size: ${({ theme }) => theme.fontSize.smaller};
+  padding-left: 10px;
+  color: ${({ theme }) => theme.color.seventh};
 `;

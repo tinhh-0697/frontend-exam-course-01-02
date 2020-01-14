@@ -8,3 +8,8 @@ export const DELETE_DATA = 'DELETE_DATA';
 export const LOADING_DATA = 'LOADING_DATA';
 export const LOADING_UI = 'LOADING_UI';
 export const STOP_LOADING = 'STOP_LOADING';
+
+export const SIGN_IN = 'SIGN_IN';
+export const LOG_IN = 'LOG_IN';
+export const LOG_IN_TOKEN = 'LOG_IN_TOKEN';
+export const LOG_OUT = 'LOG_OUT';
