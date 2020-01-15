@@ -9,7 +9,11 @@ const TableView = ({ children }) => {
     font-size: ${({ theme }) => theme.fontSize.normal};
     font-weight: ${({ theme }) => theme.fontWeight.regular};
   `;
-  return <Views>{children}</Views>;
+  return (
+    <Views>
+      <span>{children}</span>
+    </Views>
+  );
 };
 
 TableView.propTypes = {

@@ -14,26 +14,29 @@ const SwitchTheme = ({ changeTheme, isLightTheme }) => {
     overflow: hidden;
     margin-right: 20px;
     padding: 0;
-    width: 40px;
-    height: 40px;
+    width: 32px;
+    height: 32px;
     border: 0;
     border-radius: 50%;
     background-color: ${({ theme }) => theme.reserve};
+
     svg {
       width: 30px;
       height: 30px;
       margin-bottom: 5px;
+
       &:first-child {
-        transform: ${() => (!isLightTheme ? 'translateY(5px)' : 'translateY(-30px)')};
+        transform: ${() => (!isLightTheme ? 'translateY(1px)' : 'translateY(-34px)')};
       }
       &:nth-child(2) {
-        transform: ${() => (!isLightTheme ? 'translateY(5px)' : 'translateY(-30px)')};
+        transform: ${() => (!isLightTheme ? 'translateY(1px)' : 'translateY(-34px)')};
       }
     }
     &:focus {
       outline: 0;
     }
   `;
+
   const IconContainer = styled.div`
     width: 30px;
     transition: transform 0.7s linear;

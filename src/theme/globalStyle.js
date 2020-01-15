@@ -1,5 +1,5 @@
-import { createGlobalStyle } from 'styled-components';
-import { color, fontSize, fontWeight } from 'theme/variable';
+import { createGlobalStyle, css } from 'styled-components';
+import { color, fontSize, fontWeight, breakpoints } from 'theme/_variable';
 
 export const themeLight = {
   primary: '#38C6DA',
@@ -74,3 +74,12 @@ export const GlobalStyle = createGlobalStyle`
   input::-webkit-search-results-button,
   input::-webkit-search-results-decoration { display: none; }/* clears the 'X' from Chrome */
 `;
+
+export const MediaQuery = Object.keys(breakpoints).reduce((accumulator, label) => {
+  accumulator[label] = (...args) => css`
+    @media (max-width: ${breakpoints[label]}) {
+      ${css(...args)}
+    }
+  `;
+  return accumulator;
+}, {});

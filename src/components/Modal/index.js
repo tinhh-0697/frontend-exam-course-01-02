@@ -13,6 +13,8 @@ import Checkbox from 'components/Modal/Checkbox';
 // eslint-disable-next-line no-shadow
 const Modals = ({ isOpen, toggle, currentItem, updateData, addData }) => {
   const Wrapper = styled(Modal)`
+    top: 25%;
+
     .modal-content {
       padding: 15px;
       border: 0;

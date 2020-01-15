@@ -2,6 +2,7 @@ import React from 'react';
 import logo from 'images/logo.png';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
+import { MediaQuery } from 'theme/globalStyle';
 
 const Brand = () => {
   const Wrapper = styled(Link)`
@@ -15,19 +16,16 @@ const Brand = () => {
     &:hover {
       text-decoration: none;
     }
-
-    @media screen and (max-width: 1063px) {
-      padding-left: 0;
-      justify-content: center;
-    }
   `;
+
   const BrandLogo = styled.img`
     vertical-align: middle;
 
-    @media screen and (max-width: 1063px) {
-      width: 50px;
-    }
+    /* ${MediaQuery.md`
+      width: 52px;
+    `} */
   `;
+
   const BrandName = styled.h1`
     margin-left: 17px;
     margin-bottom: 0;
@@ -36,10 +34,10 @@ const Brand = () => {
     font-family: 'Rubik', sans-serif;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     text-transform: uppercase;
-
-    @media screen and (max-width: 1063px) {
-      display: none;
-    }
+/* 
+    ${MediaQuery.md`
+      font-size: ${({ theme }) => theme.fontSize.base};
+    `} */
   `;
 
   return (

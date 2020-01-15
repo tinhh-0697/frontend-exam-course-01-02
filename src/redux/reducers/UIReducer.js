@@ -12,13 +12,11 @@ export default function(state = initialState, actions) {
     case LOADING_UI: {
       return {
         ...state,
-        // isLoading: true
       };
     }
     case STOP_LOADING: {
       return {
         ...state,
-        //  isLoading: false
       };
     }
     default: {

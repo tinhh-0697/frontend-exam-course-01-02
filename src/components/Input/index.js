@@ -17,6 +17,7 @@ export const InputLabel = styled.label`
 
 export const InputField = styled.input`
   flex: 1;
+  width: 100%;
   padding: 10px;
   font-size: ${({ theme }) => theme.fontSize.base};
   font-weight: ${({ theme }) => theme.fontWeight.light};

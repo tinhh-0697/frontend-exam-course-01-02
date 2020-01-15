@@ -13,15 +13,28 @@ import TableOptions from 'components/Article/TableOptions';
 import TableStatus from 'components/Article/TableStatus';
 import styled from 'styled-components';
 import format from 'utils/formatNumber';
+import { MediaQuery } from 'theme/globalStyle';
 
 // eslint-disable-next-line no-shadow
 const TableArticle = ({ data, deleteData, getCurrentItem, toggle }) => {
+  const TableScroll = styled.div`
+    ${MediaQuery.sm`
+       overflow-x: auto; 
+    `}
+  `;
+
   const TableStyling = styled(Table)`
     margin-bottom: 30px;
+
+    ${MediaQuery.sm`
+      min-width: 650px;
+    `}
+
     th {
       vertical-align: middle;
       padding-bottom: 17px;
     }
+
     td {
       vertical-align: middle;
     }
@@ -40,8 +53,8 @@ const TableArticle = ({ data, deleteData, getCurrentItem, toggle }) => {
   const deleteItem = id => () => deleteData(id);
 
   return (
-    <>
-      <TableStyling hover striped borderless mb={30}>
+    <TableScroll>
+      <TableStyling hover striped borderless>
         <thead>
           <TableRowHeading>
             <TableHeading>Name</TableHeading>
@@ -73,7 +86,7 @@ const TableArticle = ({ data, deleteData, getCurrentItem, toggle }) => {
           })}
         </tbody>
       </TableStyling>
-    </>
+    </TableScroll>
   );
 };
 

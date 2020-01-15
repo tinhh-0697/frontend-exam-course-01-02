@@ -16,7 +16,6 @@ export const logIn = (userAccount, history) => dispatch => {
     .then(idToken => {
       console.log(idToken);
 
-      history.push('/'); // push to homescreen
       localStorage.setItem('Token', idToken);
       return db
         .collection('users')
@@ -25,6 +24,7 @@ export const logIn = (userAccount, history) => dispatch => {
     })
     .then(doc => {
       dispatch({ type: LOG_IN, payload: doc.data().name });
+      history.push('/'); // push to homescreen
     })
     .catch(err => console.log(err));
 };
@@ -55,8 +55,8 @@ export const signUp = (userInfo, history) => dispatch => {
       return db.doc(`/users/${userId}`).set(userCredential); // add user to firebase
     })
     .then(() => {
-      history.push('/');
       dispatch({ type: SIGN_IN, payload: { name } });
+      history.push('/');
     })
     .catch(err => {
       console.log(err);

@@ -7,6 +7,7 @@ import Button from 'components/Commons/Button';
 import { connect } from 'react-redux';
 import { logIn, signUp } from 'redux/actions/UserAction';
 import { useHistory } from 'react-router-dom';
+import PropTypes from 'prop-types';
 
 const Login = ({ logIn, signUp }) => {
   const [loginForm, setLoginForm] = useState(true);
@@ -16,6 +17,7 @@ const Login = ({ logIn, signUp }) => {
     display: flex;
     justify-content: center;
     align-items: flex-start;
+    height: 100vh;
     padding-top: 10vh;
     background-color: ${({ theme }) => theme.sixth};
   `;
@@ -25,6 +27,7 @@ const Login = ({ logIn, signUp }) => {
     padding: 15px;
     border-radius: 3px;
     background-color: ${({ theme }) => theme.background};
+    box-shadow: 0px 0px 59px 5px rgba(0, 0, 0, 0.3);
 
     @media screen and (max-width: 1063px) {
       width: 50%;
@@ -46,7 +49,7 @@ const Login = ({ logIn, signUp }) => {
   `;
 
   const ButtonStyling = styled(Button)`
-    width: 100%;
+    width: 100% !important;
     margin-bottom: 10px;
   `;
 
@@ -128,10 +131,12 @@ const Login = ({ logIn, signUp }) => {
                   id="password"
                   placeholder="Enter password"
                   onChange={handleChange}
-                  defaultValue={values.pass}
-                  error={errors.pass}
+                  defaultValue={values.password}
+                  error={errors.password}
                 />
-                {errors.pass && touched.pass ? <InputError>{errors.pass}</InputError> : null}
+                {errors.password && touched.password ? (
+                  <InputError>{errors.password}</InputError>
+                ) : null}
               </InputGroup>
               {!loginForm && (
                 <InputGroup>
@@ -151,9 +156,7 @@ const Login = ({ logIn, signUp }) => {
               )}
               <ButtonBlock>
                 <ButtonStyling type="submit">{loginForm ? 'Login' : 'Signup'}</ButtonStyling>
-                <ButtonStyling onClick={changeForm} danger>
-                  {loginForm ? 'Signup' : 'Login'}
-                </ButtonStyling>
+                <ButtonStyling onClick={changeForm}>{loginForm ? 'Signup' : 'Login'}</ButtonStyling>
               </ButtonBlock>
             </Form>
           )}
@@ -161,6 +164,11 @@ const Login = ({ logIn, signUp }) => {
       </FormWrapper>
     </Wrapper>
   );
+};
+
+Login.propTypes = {
+  logIn: PropTypes.func.isRequired,
+  signUp: PropTypes.func.isRequired,
 };
 
 const mapDispatchToProps = { logIn, signUp };

@@ -7,17 +7,22 @@ import Button from 'components/Commons/Button';
 import TableArticle from 'components/Article/TableArticle';
 import PropTypes from 'prop-types';
 import Modals from 'components/Modal';
+import { MediaQuery } from 'theme/globalStyle';
 
 // eslint-disable-next-line no-shadow
-const Article = ({ data, clearCurrentItem }) => {
+const Article = ({ list, clearCurrentItem }) => {
   const [modal, setModal] = useState(false);
 
   const Content = styled.div`
     margin-bottom: 30px;
-    border-radius: 5px;
+    border-radius: 7px;
     border: 1px solid;
     border-color: ${({ theme }) => theme.border};
     background-color: ${({ theme }) => theme.table};
+
+    ${MediaQuery.md`
+      margin-bottom: 20px;
+    `}
   `;
 
   const Heading = styled.div`
@@ -60,13 +65,13 @@ const Article = ({ data, clearCurrentItem }) => {
           <AddIcon />
         </Button>
       </Heading>
-      <TableArticle toggle={ToggleModal} data={data} />
+      <TableArticle toggle={ToggleModal} data={list} />
     </Content>
   );
 };
 
 Article.propTypes = {
-  data: PropTypes.arrayOf(
+  list: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.string.isRequired,
       name: PropTypes.string.isRequired,
@@ -77,7 +82,7 @@ Article.propTypes = {
   clearCurrentItem: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = state => ({ data: state.data.data });
+const mapStateToProps = state => ({ list: state.data.list });
 
 const mapDispatchToProps = { clearCurrentItem };
 

@@ -27,8 +27,9 @@ const App = ({ ui, isAuthenticated, logOutUser, logInByToken }) => {
   const { isLightTheme } = ui;
 
   const AppStyle = styled.div`
+    /* display: flex; */
+    /* justify-content: space-between; */
     background-color: ${({ theme }) => theme.sixth};
-    height: 100vh;
   `;
 
   const Content = styled.div`
@@ -37,6 +38,7 @@ const App = ({ ui, isAuthenticated, logOutUser, logInByToken }) => {
   `;
 
   const Wrapper = styled.div`
+    height: 100vh;
     display: flex;
     justify-content: space-between;
   `;
@@ -45,7 +47,6 @@ const App = ({ ui, isAuthenticated, logOutUser, logInByToken }) => {
     const token = localStorage.Token;
     if (token) {
       const decodedToken = jwtDecode(token);
-
       if (decodedToken.exp * 1000 < Date.now()) {
         logOutUser();
         window.location.href = '/login';

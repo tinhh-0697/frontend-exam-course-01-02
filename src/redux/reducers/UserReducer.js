@@ -2,7 +2,7 @@ import { SIGN_IN, LOG_IN, LOG_OUT, LOG_IN_TOKEN } from 'redux/constants';
 
 const initialState = {
   isAuthenticated: false,
-  userInfo: {},
+  userInfo: '',
 };
 
 export default function(state = initialState, actions) {

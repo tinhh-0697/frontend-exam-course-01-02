@@ -6,8 +6,11 @@ import { getData } from 'redux/actions/DataAction';
 import PropTypes from 'prop-types';
 
 // eslint-disable-next-line no-shadow
-const Elements = ({ getData, isLoading }) => {
+const Elements = ({ getData, data }) => {
+  const { isLoading, list } = data;
   useEffect(() => {
+    console.log('Running', isLoading);
+
     getData();
   }, []);
   return (
@@ -24,7 +27,7 @@ Elements.propTypes = {
   isLoading: PropTypes.bool.isRequired,
 };
 
-const mapStateToProps = state => ({ isLoading: state.data.isLoading });
+const mapStateToProps = state => ({ data: state.data });
 
 const mapDispatchToProps = { getData };
 

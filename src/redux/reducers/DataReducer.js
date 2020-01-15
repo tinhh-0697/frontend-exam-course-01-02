@@ -9,7 +9,7 @@ import {
 } from 'redux/constants';
 
 const initialState = {
-  data: [],
+  list: [],
   currentItem: {},
   isLoading: false,
 };
@@ -25,14 +25,14 @@ export default function(state = initialState, actions) {
     case GET_DATA: {
       return {
         ...state,
-        data: actions.payload,
+        list: actions.payload,
         isLoading: false,
       };
     }
     case GET_CURRENT_ITEM: {
       return {
         ...state,
-        currentItem: state.data.find(item => item.id === actions.payload),
+        currentItem: state.list.find(item => item.id === actions.payload),
       };
     }
     case CLEAR_CURRENT_ITEM: {
@@ -42,12 +42,12 @@ export default function(state = initialState, actions) {
       };
     }
     case DELETE_DATA: {
-      return { ...state, data: state.data.filter(item => item.id !== actions.payload) };
+      return { ...state, list: state.list.filter(item => item.id !== actions.payload) };
     }
     case UPDATE_DATA: {
       return {
         ...state,
-        data: state.data.map(ele => {
+        list: state.list.map(ele => {
           return ele.id === actions.payload.id ? { ...ele, ...actions.payload } : ele;
         }),
       };
@@ -55,7 +55,7 @@ export default function(state = initialState, actions) {
     case ADD_DATA: {
       return {
         ...state,
-        data: [actions.payload, ...state.data],
+        list: [actions.payload, ...state.list],
       };
     }
     default: {

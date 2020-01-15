@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Header from 'components/Header';
 import PropTypes from 'prop-types';
+import { MediaQuery } from 'theme/globalStyle';
 
 const Main = ({ children }) => {
   const Wrapper = styled.div`
@@ -13,6 +14,11 @@ const Main = ({ children }) => {
     flex: 1;
     padding: 30px;
     overflow-y: auto;
+
+    ${MediaQuery.md`
+      padding: 20px;
+      width: 100vw;
+    `}
   `;
 
   return (
