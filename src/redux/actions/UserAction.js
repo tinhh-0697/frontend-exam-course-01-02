@@ -1,12 +1,14 @@
 /* eslint-disable no-console */
-import { SIGN_UP, LOG_IN, LOG_OUT, LOG_IN_TOKEN, LOG_ERROR } from 'redux/constants';
+import { SIGN_UP, LOG_IN, LOG_OUT, LOG_IN_TOKEN, LOG_ERROR, CLEAR_ERROR } from 'redux/constants';
 import jwtDecode from 'jwt-decode';
 import firebase from '../../firebase/firebase';
 
 const db = firebase.firestore();
 
 export const logIn = (userAccount, history) => dispatch => {
+  dispatch({ type: CLEAR_ERROR });
   const { email, password } = userAccount;
+
   firebase
     .auth()
     .signInWithEmailAndPassword(email, password)
@@ -21,7 +23,10 @@ export const logIn = (userAccount, history) => dispatch => {
         .get(); // return user data
     })
     .then(doc => {
-      dispatch({ type: LOG_IN, payload: doc.data().name });
+      dispatch({
+        type: LOG_IN,
+        payload: doc.data().name,
+      });
       history.replace('/'); // push to homescreen
     })
     .catch(err => {
@@ -31,13 +36,18 @@ export const logIn = (userAccount, history) => dispatch => {
 };
 
 export const signUp = (userInfo, history, from) => dispatch => {
+  dispatch({ type: CLEAR_ERROR });
   const { name, email, password } = userInfo;
   let userId;
+
   db.collection('users')
     .where('email', '==', email)
     .get()
     .then(doc => {
       if (doc.exists) {
+        dispatch({
+          type: LOG_ERROR,
+        });
         return 'User exists';
       }
       return firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -55,7 +65,11 @@ export const signUp = (userInfo, history, from) => dispatch => {
       return db.doc(`/users/${userId}`).set(userCredential); // add user to firebase
     })
     .then(() => {
-      dispatch({ type: SIGN_UP, payload: { name } });
+      dispatch({
+        type: SIGN_UP,
+        payload: { name },
+      });
+
       history.replace(from);
     })
     .catch(err => {
@@ -65,19 +79,30 @@ export const signUp = (userInfo, history, from) => dispatch => {
 };
 
 export const logInByToken = (userId, history, from) => dispatch => {
+  dispatch({
+    type: CLEAR_ERROR,
+  });
+
   db.collection('users')
     .doc(userId)
     .get()
     .then(doc => {
       if (doc.exists) {
-        dispatch({ type: LOG_IN_TOKEN, payload: doc.data().name });
+        dispatch({
+          type: LOG_IN_TOKEN,
+          payload: doc.data().name,
+        });
         return 'User exists';
       }
       return 'User is not exists';
     })
-    .then(() => history.replace(from))
+    .then(() => {
+      history.replace(from);
+    })
     .catch(err => {
-      dispatch({ type: LOG_ERROR });
+      dispatch({
+        type: LOG_ERROR,
+      });
       console.log(err);
     });
 };

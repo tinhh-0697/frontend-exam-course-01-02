@@ -17,7 +17,7 @@ const ToastWrapper = () => {
   `;
 
   return (
-    <ToastStyling isOpen={show} onClick={() => setShow(false)}>
+    <ToastStyling isOpen={show} onClick={() => setShow(!show)}>
       <ToastHeader>Danger</ToastHeader>
       <ToastBody>Something wrong - please log in again!</ToastBody>
     </ToastStyling>

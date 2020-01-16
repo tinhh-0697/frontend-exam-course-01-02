@@ -11,6 +11,7 @@ export const LOG_IN = 'LOG_IN';
 export const LOG_IN_TOKEN = 'LOG_IN_TOKEN';
 export const LOG_OUT = 'LOG_OUT';
 export const LOG_ERROR = 'LOG_ERROR';
+export const CLEAR_ERROR = 'CLEAR_ERROR';
 
 export const CHANGE_THEME = 'CHANGE_THEME';
 export const LOADING_UI = 'LOADING_UI';

@@ -5,7 +5,7 @@ import styled from 'styled-components';
 import { Formik, Form } from 'formik';
 import Button from 'components/Commons/Button';
 import Toast from 'components/Login/Toast';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import { logIn, signUp } from 'redux/actions/UserAction';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
@@ -15,6 +15,7 @@ import { MediaQuery } from 'theme/globalStyle';
 const Login = ({ logIn, signUp, error }) => {
   const [loginForm, setLoginForm] = useState(true);
   const history = useHistory();
+  const changeErr = useDispatch();
 
   const Wrapper = styled.div`
     display: flex;
@@ -35,7 +36,7 @@ const Login = ({ logIn, signUp, error }) => {
     ${MediaQuery.lg`
       width: 50%;
     `}
-    
+
     ${MediaQuery.md`
       width: 70%;
     `}
@@ -77,6 +78,7 @@ const Login = ({ logIn, signUp, error }) => {
 
   const changeForm = () => {
     setLoginForm(!loginForm);
+    changeErr({ type: 'CLEAR_ERROR' });
   };
 
   return (
@@ -160,7 +162,9 @@ const Login = ({ logIn, signUp, error }) => {
               )}
               <ButtonBlock>
                 <ButtonStyling type="submit">{loginForm ? 'Login' : 'Signup'}</ButtonStyling>
-                <ButtonStyling onClick={changeForm}>{loginForm ? 'Signup' : 'Login'}</ButtonStyling>
+                <ButtonStyling type="button" onClick={changeForm}>
+                  {loginForm ? 'Signup' : 'Login'}
+                </ButtonStyling>
               </ButtonBlock>
             </Form>
           )}

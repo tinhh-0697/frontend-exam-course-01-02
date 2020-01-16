@@ -1,4 +1,4 @@
-import { SIGN_UP, LOG_IN, LOG_ERROR, LOG_IN_TOKEN, LOG_OUT } from 'redux/constants';
+import { SIGN_UP, LOG_IN, LOG_ERROR, LOG_IN_TOKEN, LOG_OUT, CLEAR_ERROR } from 'redux/constants';
 
 const initialState = {
   isAuthenticated: false,
@@ -18,6 +18,9 @@ export default function(state = initialState, actions) {
     }
     case LOG_ERROR: {
       return { ...state, error: true };
+    }
+    case CLEAR_ERROR: {
+      return { ...state, error: false };
     }
     default: {
       return state;
