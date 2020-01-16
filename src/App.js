@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'theme/globalStyle';
@@ -17,18 +17,14 @@ import Ecommerce from 'pages/Ecommerce';
 import Login from 'pages/Login';
 import Main from 'components/Main';
 import { connect } from 'react-redux';
-import jwtDecode from 'jwt-decode';
 import PropTypes from 'prop-types';
 import AuthRoute from 'utils/AuthRoute';
-import { logOutUser, logInByToken } from 'redux/actions/UserAction';
 import { themeLight, themeDark } from './theme/globalStyle';
 
-const App = ({ ui, isAuthenticated, logOutUser, logInByToken }) => {
+const App = ({ ui, isAuthenticated }) => {
   const { isLightTheme } = ui;
 
   const AppStyle = styled.div`
-    /* display: flex; */
-    /* justify-content: space-between; */
     background-color: ${({ theme }) => theme.sixth};
   `;
 
@@ -42,19 +38,6 @@ const App = ({ ui, isAuthenticated, logOutUser, logInByToken }) => {
     display: flex;
     justify-content: space-between;
   `;
-
-  useEffect(() => {
-    const token = localStorage.Token;
-    if (token) {
-      const decodedToken = jwtDecode(token);
-      if (decodedToken.exp * 1000 < Date.now()) {
-        logOutUser();
-        window.location.href = '/login';
-      } else {
-        logInByToken(decodedToken.user_id);
-      }
-    }
-  }, []);
 
   return (
     <>
@@ -97,8 +80,6 @@ App.propTypes = {
     isLightTheme: PropTypes.bool.isRequired,
   }).isRequired,
   isAuthenticated: PropTypes.bool.isRequired,
-  logOutUser: PropTypes.func.isRequired,
-  logInByToken: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -106,6 +87,4 @@ const mapStateToProps = state => ({
   isAuthenticated: state.user.isAuthenticated,
 });
 
-const mapDispatchToProps = { logOutUser, logInByToken };
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

@@ -8,10 +8,6 @@ const CategoryLink = ({ icon, title, notiNumber, path }) => {
   const Content = styled.li`
     position: relative;
     padding-left: 34px;
-
-    /* ${MediaQuery.md`
-      padding-left: 15px;
-    `} */
   `;
 
   const LinkMenu = styled(NavLink)`
@@ -28,10 +24,6 @@ const CategoryLink = ({ icon, title, notiNumber, path }) => {
       width: 4px;
       height: 100%;
       background-color: ${({ theme }) => theme.color.sixth};
-
-      /* ${MediaQuery.md`
-        height: 75%;
-      `} */
     }
 
     &:hover {
@@ -50,18 +42,16 @@ const CategoryLink = ({ icon, title, notiNumber, path }) => {
       }
     }
   `;
+
   const Icon = styled(icon)`
     margin-right: 26px;
     width: 26px;
     height: 26px;
     fill: ${({ theme }) => theme.thirty};
 
-    /* ${MediaQuery.md`
-      margin-right: 18px;
-    `} */
-
     ${Content}:hover & {
       fill: ${({ theme }) => theme.color.sixth};
+      transition: all 0.25s ease-in-out;
     }
   `;
 
@@ -75,6 +65,7 @@ const CategoryLink = ({ icon, title, notiNumber, path }) => {
 
     ${Content}:hover & {
       color: ${({ theme }) => theme.color.sixth};
+      transition: all 0.25s ease-in-out;
     }
   `;
 
@@ -94,13 +85,6 @@ const CategoryLink = ({ icon, title, notiNumber, path }) => {
     ${MediaQuery.lg`
       margin-right: auto;
     `}
-
-    /* ${MediaQuery.md`
-      width: 30px;
-      height: 20px;
-      line-height: 20px;
-      font-size: ${({ theme }) => theme.fontSize.small};
-    `} */
   `;
 
   return (

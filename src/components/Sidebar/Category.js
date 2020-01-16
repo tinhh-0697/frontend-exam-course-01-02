@@ -2,7 +2,6 @@ import React from 'react';
 import styled from 'styled-components';
 import PropTypes from 'prop-types';
 import CategoryLink from 'components/Sidebar/CategoryLink';
-import { MediaQuery } from 'theme/globalStyle';
 
 const Category = ({ heading, list }) => {
   const Heading = styled.h3`
@@ -14,11 +13,6 @@ const Category = ({ heading, list }) => {
     font-family: 'Rubik', sans-serif;
     font-weight: ${({ theme }) => theme.fontWeight.regular};
     text-transform: uppercase;
-
-    /* ${MediaQuery.md`
-      margin-bottom: 12px;
-      padding-top: 20px;
-    `} */
   `;
 
   const CategoryContent = styled.ul`

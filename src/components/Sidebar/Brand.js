@@ -2,7 +2,6 @@ import React from 'react';
 import logo from 'images/logo.png';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-import { MediaQuery } from 'theme/globalStyle';
 
 const Brand = () => {
   const Wrapper = styled(Link)`
@@ -13,6 +12,7 @@ const Brand = () => {
     height: 82px;
     z-index: 10;
     background-color: ${({ theme }) => theme.color.sixth};
+
     &:hover {
       text-decoration: none;
     }
@@ -20,10 +20,6 @@ const Brand = () => {
 
   const BrandLogo = styled.img`
     vertical-align: middle;
-
-    /* ${MediaQuery.md`
-      width: 52px;
-    `} */
   `;
 
   const BrandName = styled.h1`
@@ -34,10 +30,6 @@ const Brand = () => {
     font-family: 'Rubik', sans-serif;
     font-weight: ${({ theme }) => theme.fontWeight.medium};
     text-transform: uppercase;
-/* 
-    ${MediaQuery.md`
-      font-size: ${({ theme }) => theme.fontSize.base};
-    `} */
   `;
 
   return (

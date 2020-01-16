@@ -14,6 +14,7 @@ const ButtonStyling = styled(Button)`
   border: 0;
   border-radius: 5px;
   background-color: ${({ theme }) => theme.color.fifty};
+  transition: all 0.25s ease-in-out;
 
   ${MediaQuery.sm`
     width: 70px;
@@ -40,6 +41,7 @@ const ButtonStyling = styled(Button)`
     props.larger &&
     css`
       display: flex;
+      justify-content: center;
       align-items: center;
       width: 157px !important;
       height: 51px !important;

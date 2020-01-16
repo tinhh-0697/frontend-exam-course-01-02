@@ -1,59 +1,17 @@
 import React, { useState } from 'react';
-import styled from 'styled-components';
-import { Setting } from 'components/Commons/icons';
-import { Dropdown, DropdownToggle, DropdownMenu, DropdownItem, Button } from 'reactstrap';
+import Button from 'components/Commons/Button';
+import { Dropdown } from 'reactstrap';
 import { connect } from 'react-redux';
 import { logOutUser } from 'redux/actions/UserAction';
 import PropTypes from 'prop-types';
-import { MediaQuery } from 'theme/globalStyle';
+import { DropdownWrapper, DropdownItemWrapper, Toggle } from 'components/Header/Dropdown';
+import { Wrapper, AccountName, SettingIcon } from 'components/Header/HeaderComponent';
 
 // eslint-disable-next-line no-shadow
 const Account = ({ userInfo, logOutUser }) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
-
-  const Wrapper = styled.div`
-    display: flex;
-    align-items: center;
-  `;
-
-  const AccountName = styled.h2`
-    margin: 0 20px 0 0;
-    color: ${({ theme }) => theme.fifty};
-    font-size: ${({ theme }) => theme.fontSize.big};
-    font-family: 'Rubik', sans-serif;
-    font-weight: ${({ theme }) => theme.fontWeight.regular};
-
-    ${MediaQuery.xs`
-      display: none;
-    `}
-  `;
-
-  const SettingIcon = styled(Setting)`
-    width: 32px;
-    height: 32px;
-    fill: ${({ theme }) => theme.thirty};
-
-    /* ${MediaQuery.sm`
-        width: 20px;
-         height: 20px;
-    `} */
-  `;
-
-  const Toggle = styled(DropdownToggle)`
-    padding: 0;
-    background-color: transparent;
-    border: 0;
-    &:hover,
-    &:active,
-    &:focus {
-      background-color: transparent !important;
-      border: 0 !important;
-      outline: 0 !important;
-      box-shadow: none !important;
-    }
-  `;
 
   return (
     <Wrapper>
@@ -62,13 +20,13 @@ const Account = ({ userInfo, logOutUser }) => {
         <Toggle>
           <SettingIcon />
         </Toggle>
-        <DropdownMenu right>
-          <DropdownItem>
+        <DropdownWrapper right>
+          <DropdownItemWrapper>
             <Button onClick={logOutUser} color="primary">
               Sign out
             </Button>
-          </DropdownItem>
-        </DropdownMenu>
+          </DropdownItemWrapper>
+        </DropdownWrapper>
       </Dropdown>
     </Wrapper>
   );

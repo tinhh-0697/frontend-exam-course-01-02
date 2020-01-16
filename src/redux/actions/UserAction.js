@@ -14,8 +14,6 @@ export const logIn = (userAccount, history) => dispatch => {
       return data.user.getIdToken(); // return token
     })
     .then(idToken => {
-      console.log(idToken);
-
       localStorage.setItem('Token', idToken);
       return db
         .collection('users')
@@ -37,7 +35,6 @@ export const signUp = (userInfo, history) => dispatch => {
     .get()
     .then(doc => {
       if (doc.exists) {
-        console.log('User exists');
         return 'User exists';
       }
       return firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -56,7 +53,7 @@ export const signUp = (userInfo, history) => dispatch => {
     })
     .then(() => {
       dispatch({ type: SIGN_IN, payload: { name } });
-      history.push('/');
+      history.push('/home');
     })
     .catch(err => {
       console.log(err);

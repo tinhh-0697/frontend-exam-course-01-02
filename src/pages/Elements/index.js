@@ -7,12 +7,12 @@ import PropTypes from 'prop-types';
 
 // eslint-disable-next-line no-shadow
 const Elements = ({ getData, data }) => {
-  const { isLoading, list } = data;
-  useEffect(() => {
-    console.log('Running', isLoading);
+  const { isLoading } = data;
 
+  useEffect(() => {
     getData();
   }, []);
+
   return (
     <div>
       {isLoading && <Loading />}
@@ -24,7 +24,9 @@ const Elements = ({ getData, data }) => {
 
 Elements.propTypes = {
   getData: PropTypes.func.isRequired,
-  isLoading: PropTypes.bool.isRequired,
+  data: PropTypes.shape({
+    isLoading: PropTypes.bool.isRequired,
+  }).isRequired,
 };
 
 const mapStateToProps = state => ({ data: state.data });

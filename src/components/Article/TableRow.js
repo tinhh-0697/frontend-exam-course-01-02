@@ -5,8 +5,10 @@ import PropTypes from 'prop-types';
 const TableRow = ({ children }) => {
   const Row = styled.tr`
     height: 85px;
+
     &&& {
       background-color: ${({ theme }) => theme.background};
+      transition: all 0.3s ease-in-out;
 
       :nth-of-type(even) {
         height: 75px;
