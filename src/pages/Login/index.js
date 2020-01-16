@@ -9,6 +9,7 @@ import { connect } from 'react-redux';
 import { logIn, signUp } from 'redux/actions/UserAction';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
+import { MediaQuery } from 'theme/globalStyle';
 
 // eslint-disable-next-line no-shadow
 const Login = ({ logIn, signUp, error }) => {
@@ -31,17 +32,17 @@ const Login = ({ logIn, signUp, error }) => {
     background-color: ${({ theme }) => theme.background};
     box-shadow: 0px 0px 59px 5px rgba(0, 0, 0, 0.3);
 
-    @media screen and (max-width: 1063px) {
+    ${MediaQuery.lg`
       width: 50%;
-    }
-
-    @media screen and (max-width: 992px) {
+    `}
+    
+    ${MediaQuery.md`
       width: 70%;
-    }
+    `}
 
-    @media screen and (max-width: 575px) {
+    ${MediaQuery.xs`
       width: 85%;
-    }
+    `}
   `;
 
   const ButtonBlock = styled.div`

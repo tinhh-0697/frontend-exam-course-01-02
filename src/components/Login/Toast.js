@@ -9,8 +9,11 @@ const ToastWrapper = () => {
 
   const ToastStyling = styled(Toast)`
     position: absolute;
-    right: 20px;
-    top: 20px;
+    top: 25%;
+    right: 50%;
+    width: 100%;
+    transform: translateX(50%);
+    box-shadow: 0px 0px 0 1000px rgba(0, 0, 0, 0.2);
   `;
 
   return (
