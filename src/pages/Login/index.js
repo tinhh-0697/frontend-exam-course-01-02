@@ -4,12 +4,13 @@ import * as Yup from 'yup';
 import styled from 'styled-components';
 import { Formik, Form } from 'formik';
 import Button from 'components/Commons/Button';
+import Toast from 'components/Login/Toast';
 import { connect } from 'react-redux';
 import { logIn, signUp } from 'redux/actions/UserAction';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
-const Login = ({ logIn, signUp }) => {
+const Login = ({ logIn, signUp, error }) => {
   const [loginForm, setLoginForm] = useState(true);
   const history = useHistory();
 
@@ -78,6 +79,7 @@ const Login = ({ logIn, signUp }) => {
 
   return (
     <Wrapper>
+      {error && <Toast />}
       <FormWrapper>
         <Formik
           enableReinitialize
@@ -171,6 +173,8 @@ Login.propTypes = {
   signUp: PropTypes.func.isRequired,
 };
 
+const mapStateToProps = state => ({ error: state.user.error });
+
 const mapDispatchToProps = { logIn, signUp };
 
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

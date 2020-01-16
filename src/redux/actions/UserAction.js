@@ -1,11 +1,12 @@
 /* eslint-disable no-console */
-import { SIGN_IN, LOG_IN, LOG_OUT, LOG_IN_TOKEN } from 'redux/constants';
+import { SIGN_UP, LOG_IN, LOG_OUT, LOG_IN_TOKEN, LOG_ERROR } from 'redux/constants';
 import jwtDecode from 'jwt-decode';
 import firebase from '../../firebase/firebase';
 
 const db = firebase.firestore();
 
-export const logIn = (userAccount, history) => dispatch => {
+export const logIn = (userAccount, history, from) => dispatch => {
+  console.log(history, from);
   const { email, password } = userAccount;
   firebase
     .auth()
@@ -22,12 +23,15 @@ export const logIn = (userAccount, history) => dispatch => {
     })
     .then(doc => {
       dispatch({ type: LOG_IN, payload: doc.data().name });
-      history.push('/'); // push to homescreen
+      history.replace('/'); // push to homescreen
     })
-    .catch(err => console.log(err));
+    .catch(err => {
+      dispatch({ type: LOG_ERROR });
+      console.log(err);
+    });
 };
 
-export const signUp = (userInfo, history) => dispatch => {
+export const signUp = (userInfo, history, from) => dispatch => {
   const { name, email, password } = userInfo;
   let userId;
   db.collection('users')
@@ -52,15 +56,16 @@ export const signUp = (userInfo, history) => dispatch => {
       return db.doc(`/users/${userId}`).set(userCredential); // add user to firebase
     })
     .then(() => {
-      dispatch({ type: SIGN_IN, payload: { name } });
-      history.push('/home');
+      dispatch({ type: SIGN_UP, payload: { name } });
+      history.replace(from);
     })
     .catch(err => {
+      dispatch({ type: LOG_ERROR });
       console.log(err);
     });
 };
 
-export const logInByToken = userId => dispatch => {
+export const logInByToken = (userId, history, from) => dispatch => {
   db.collection('users')
     .doc(userId)
     .get()
@@ -71,7 +76,11 @@ export const logInByToken = userId => dispatch => {
       }
       return 'User is not exists';
     })
-    .catch(err => console.log(err));
+    .then(() => history.replace(from))
+    .catch(err => {
+      dispatch({ type: LOG_ERROR });
+      console.log(err);
+    });
 };
 
 export const logOutUser = () => dispatch => {

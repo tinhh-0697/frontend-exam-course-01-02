@@ -6,10 +6,11 @@ export const UPDATE_DATA = 'UPDATE_DATA';
 export const DELETE_DATA = 'DELETE_DATA';
 export const LOADING_DATA = 'LOADING_DATA';
 
-export const SIGN_IN = 'SIGN_IN';
+export const SIGN_UP = 'SIGN_UP';
 export const LOG_IN = 'LOG_IN';
 export const LOG_IN_TOKEN = 'LOG_IN_TOKEN';
 export const LOG_OUT = 'LOG_OUT';
+export const LOG_ERROR = 'LOG_ERROR';
 
 export const CHANGE_THEME = 'CHANGE_THEME';
 export const LOADING_UI = 'LOADING_UI';

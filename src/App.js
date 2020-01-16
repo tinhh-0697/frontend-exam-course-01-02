@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch, withRouter } from 'react-router-dom';
 import styled, { ThemeProvider } from 'styled-components';
 import { GlobalStyle } from 'theme/globalStyle';
 import Sidebar from 'components/Sidebar';
@@ -19,6 +19,7 @@ import Main from 'components/Main';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import AuthRoute from 'utils/AuthRoute';
+import { compose } from 'redux';
 import { themeLight, themeDark } from './theme/globalStyle';
 
 const App = ({ ui, isAuthenticated }) => {

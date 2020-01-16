@@ -1,17 +1,23 @@
-import { SIGN_IN, LOG_IN, LOG_OUT, LOG_IN_TOKEN } from 'redux/constants';
+import { SIGN_UP, LOG_IN, LOG_ERROR, LOG_IN_TOKEN, LOG_OUT } from 'redux/constants';
 
 const initialState = {
   isAuthenticated: false,
   userInfo: '',
+  error: false,
 };
 
 export default function(state = initialState, actions) {
   switch (actions.type) {
-    case (SIGN_IN, LOG_IN, LOG_IN_TOKEN): {
+    case LOG_IN:
+    case LOG_IN_TOKEN:
+    case SIGN_UP: {
       return { ...state, isAuthenticated: true, userInfo: actions.payload };
     }
     case LOG_OUT: {
-      return { initialState };
+      return { ...state };
+    }
+    case LOG_ERROR: {
+      return { ...state, error: true };
     }
     default: {
       return state;
