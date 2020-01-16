@@ -10,6 +10,7 @@ import { logIn, signUp } from 'redux/actions/UserAction';
 import { useHistory } from 'react-router-dom';
 import PropTypes from 'prop-types';
 
+// eslint-disable-next-line no-shadow
 const Login = ({ logIn, signUp, error }) => {
   const [loginForm, setLoginForm] = useState(true);
   const history = useHistory();
@@ -171,6 +172,7 @@ const Login = ({ logIn, signUp, error }) => {
 Login.propTypes = {
   logIn: PropTypes.func.isRequired,
   signUp: PropTypes.func.isRequired,
+  error: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = state => ({ error: state.user.error });

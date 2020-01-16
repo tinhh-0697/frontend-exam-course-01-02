@@ -5,8 +5,7 @@ import firebase from '../../firebase/firebase';
 
 const db = firebase.firestore();
 
-export const logIn = (userAccount, history, from) => dispatch => {
-  console.log(history, from);
+export const logIn = (userAccount, history) => dispatch => {
   const { email, password } = userAccount;
   firebase
     .auth()
