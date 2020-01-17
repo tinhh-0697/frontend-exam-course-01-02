@@ -45,7 +45,7 @@ const App = ({ ui, isAuthenticated }) => {
       <ThemeProvider theme={isLightTheme ? themeLight : themeDark}>
         <Router>
           <AppStyle>
-            <Route path="/login" component={isAuthenticated ? null : Login} />
+            <Route exact path="/login" component={isAuthenticated ? null : Login} />
             <AuthRoute>
               <Wrapper>
                 <Sidebar />
@@ -53,16 +53,16 @@ const App = ({ ui, isAuthenticated }) => {
                   <Switch>
                     <Content>
                       <Route exact path="/" component={Dashboard} />
-                      <Route path="/home" component={Home} />
-                      <Route path="/widget" component={Widget} />
-                      <Route path="/elements" component={Elements} />
-                      <Route path="/form" component={Forms} />
-                      <Route path="/chart" component={Charts} />
-                      <Route path="/table" component={Table} />
-                      <Route path="/maps" component={Maps} />
-                      <Route path="/page" component={Pages} />
-                      <Route path="/blog" component={Blog} />
-                      <Route path="/ecommerce" component={Ecommerce} />
+                      <Route exact path="/home" component={Home} />
+                      <Route exact path="/widget" component={Widget} />
+                      <Route exact path="/elements" component={Elements} />
+                      <Route exact path="/form" component={Forms} />
+                      <Route exact path="/chart" component={Charts} />
+                      <Route exact path="/table" component={Table} />
+                      <Route exact path="/maps" component={Maps} />
+                      <Route exact path="/page" component={Pages} />
+                      <Route exact path="/blog" component={Blog} />
+                      <Route exact path="/ecommerce" component={Ecommerce} />
                     </Content>
                   </Switch>
                 </Main>
