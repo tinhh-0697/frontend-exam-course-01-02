@@ -7,7 +7,7 @@ import Button from 'components/Commons/Button';
 import Toast from 'components/Login/Toast';
 import { connect, useDispatch } from 'react-redux';
 import { logIn, signUp } from 'redux/actions/UserAction';
-import { useHistory } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { MediaQuery } from 'theme/globalStyle';
 
@@ -15,6 +15,7 @@ import { MediaQuery } from 'theme/globalStyle';
 const Login = ({ logIn, signUp, error }) => {
   const [loginForm, setLoginForm] = useState(true);
   const history = useHistory();
+  const location = useLocation();
   const changeErr = useDispatch();
 
   const Wrapper = styled.div`
@@ -91,9 +92,9 @@ const Login = ({ logIn, signUp, error }) => {
           validationSchema={UpdateSchema}
           onSubmit={values => {
             if (values.repass !== '') {
-              signUp(values, history);
+              signUp(values, history, location.pathname);
             } else {
-              logIn(values, history);
+              logIn(values, history, location.pathname);
             }
           }}
         >

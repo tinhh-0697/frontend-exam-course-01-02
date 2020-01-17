@@ -19,7 +19,7 @@ const AuthRoute = ({ children, isAuthenticated, logInByToken, ...rest }) => {
       if (decodedToken.exp * 1000 < Date.now()) {
         localStorage.removeItem('Token');
       } else {
-        logInByToken(decodedToken.user_id, history, from);
+        logInByToken(decodedToken.user_id, history, location.pathname);
       }
     }
   }, []);

@@ -5,7 +5,7 @@ import firebase from '../../firebase/firebase';
 
 const db = firebase.firestore();
 
-export const logIn = (userAccount, history) => dispatch => {
+export const logIn = (userAccount, history, pathname) => dispatch => {
   dispatch({ type: CLEAR_ERROR });
   const { email, password } = userAccount;
 
@@ -27,14 +27,20 @@ export const logIn = (userAccount, history) => dispatch => {
         type: LOG_IN,
         payload: doc.data().name,
       });
-      history.replace('/'); // push to homescreen
+      console.log(pathname);
+
+      if (pathname === '/login') {
+        history.replace('/');
+      } else {
+        history.replace(pathname);
+      }
     })
     .catch(err => {
       dispatch({ type: LOG_ERROR, payload: err.message });
     });
 };
 
-export const signUp = (userInfo, history, from) => dispatch => {
+export const signUp = (userInfo, history, pathname) => dispatch => {
   dispatch({ type: CLEAR_ERROR });
   const { name, email, password } = userInfo;
   let userId;
@@ -63,17 +69,16 @@ export const signUp = (userInfo, history, from) => dispatch => {
     .then(() => {
       dispatch({
         type: SIGN_UP,
-        payload: { name },
+        payload: name,
       });
-
-      history.replace(from);
+      history.replace(pathname);
     })
     .catch(err => {
       dispatch({ type: LOG_ERROR, payload: err.message });
     });
 };
 
-export const logInByToken = (userId, history, from) => dispatch => {
+export const logInByToken = (userId, history, pathname) => dispatch => {
   dispatch({ type: CLEAR_ERROR });
 
   db.collection('users')
@@ -90,7 +95,12 @@ export const logInByToken = (userId, history, from) => dispatch => {
       return 'User is not exists';
     })
     .then(() => {
-      history.replace(from);
+      console.log(pathname);
+      if (pathname === '/login') {
+        history.replace('/');
+      } else {
+        history.replace(pathname);
+      }
     })
     .catch(err => {
       dispatch({ type: LOG_ERROR, payload: err.message });
