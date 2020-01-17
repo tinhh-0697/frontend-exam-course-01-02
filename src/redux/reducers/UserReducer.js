@@ -4,6 +4,7 @@ const initialState = {
   isAuthenticated: false,
   userInfo: '',
   error: false,
+  errorMessage: null,
 };
 
 export default function(state = initialState, actions) {
@@ -17,10 +18,10 @@ export default function(state = initialState, actions) {
       return { ...state };
     }
     case LOG_ERROR: {
-      return { ...state, error: true };
+      return { ...state, error: true, errorMessage: actions.payload };
     }
     case CLEAR_ERROR: {
-      return { ...state, error: false };
+      return { ...state, error: false, errorMessage: null };
     }
     default: {
       return state;

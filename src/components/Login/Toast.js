@@ -4,7 +4,8 @@ import styled from 'styled-components';
 import { useSelector } from 'react-redux';
 
 const ToastWrapper = () => {
-  const error = useSelector(state => state.user.error);
+  const getState = useSelector(state => state.user);
+  const { error, errorMessage } = getState;
   const [show, setShow] = useState(error);
 
   const ToastStyling = styled(Toast)`
@@ -19,7 +20,7 @@ const ToastWrapper = () => {
   return (
     <ToastStyling isOpen={show} onClick={() => setShow(!show)}>
       <ToastHeader>Danger</ToastHeader>
-      <ToastBody>Something wrong - please log in again!</ToastBody>
+      <ToastBody>{errorMessage}</ToastBody>
     </ToastStyling>
   );
 };

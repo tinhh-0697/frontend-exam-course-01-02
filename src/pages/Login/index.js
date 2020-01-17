@@ -83,7 +83,7 @@ const Login = ({ logIn, signUp, error }) => {
 
   return (
     <Wrapper>
-      {error && <Toast />}
+      <Toast />
       <FormWrapper>
         <Formik
           enableReinitialize

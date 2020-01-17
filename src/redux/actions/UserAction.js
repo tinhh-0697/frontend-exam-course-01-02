@@ -30,8 +30,7 @@ export const logIn = (userAccount, history) => dispatch => {
       history.replace('/'); // push to homescreen
     })
     .catch(err => {
-      dispatch({ type: LOG_ERROR });
-      console.log(err);
+      dispatch({ type: LOG_ERROR, payload: err.message });
     });
 };
 
@@ -45,9 +44,6 @@ export const signUp = (userInfo, history, from) => dispatch => {
     .get()
     .then(doc => {
       if (doc.exists) {
-        dispatch({
-          type: LOG_ERROR,
-        });
         return 'User exists';
       }
       return firebase.auth().createUserWithEmailAndPassword(email, password);
@@ -73,15 +69,12 @@ export const signUp = (userInfo, history, from) => dispatch => {
       history.replace(from);
     })
     .catch(err => {
-      dispatch({ type: LOG_ERROR });
-      console.log(err);
+      dispatch({ type: LOG_ERROR, payload: err.message });
     });
 };
 
 export const logInByToken = (userId, history, from) => dispatch => {
-  dispatch({
-    type: CLEAR_ERROR,
-  });
+  dispatch({ type: CLEAR_ERROR });
 
   db.collection('users')
     .doc(userId)
@@ -100,14 +93,12 @@ export const logInByToken = (userId, history, from) => dispatch => {
       history.replace(from);
     })
     .catch(err => {
-      dispatch({
-        type: LOG_ERROR,
-      });
-      console.log(err);
+      dispatch({ type: LOG_ERROR, payload: err.message });
     });
 };
 
 export const logOutUser = () => dispatch => {
   localStorage.removeItem('Token');
   dispatch({ type: LOG_OUT });
+  window.location.href = '/login';
 };

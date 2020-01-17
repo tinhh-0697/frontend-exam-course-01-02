@@ -13,6 +13,8 @@ const Account = ({ userInfo, logOutUser }) => {
 
   const toggle = () => setDropdownOpen(prevState => !prevState);
 
+  const handleLogout = () => {};
+
   return (
     <Wrapper>
       <AccountName>{userInfo}</AccountName>
